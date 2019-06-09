@@ -49,8 +49,8 @@ friends:
 
 # comment system
 # disqus
-disqus: false
-disqus_url: '' # https://abc.disqus.com/embed.js
+disqus: true
+disqus_url: 'https://pofat-dev.disqus.com/embed.js' # https://abc.disqus.com/embed.js
 # livere
 livere: false
 livere_uid: ''
