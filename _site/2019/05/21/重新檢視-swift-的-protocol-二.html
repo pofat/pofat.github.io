@@ -1,0 +1,438 @@
+<!-- 博文的布局-Layout -->
+<!DOCTYPE html>
+<html>
+<head>
+<!-- 引入head标签 -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-sclable=0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="description" content="#0x8badf00d 🤮" />
+<meta name="keywords" content="iOS, Swift" />
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/media.css">
+<link rel="stylesheet" href="/assets/css/animate.min.css">
+<link rel="stylesheet" href="/assets/css/pygments/pygments_pastie.css">
+<link rel="stylesheet" href="/assets/css/github-markdown.css">
+<!-- SNS-icon -->
+<script src="//at.alicdn.com/t/font_856428_y9z6nq7zf5.js"></script>
+<!-- share.css -->
+<link rel="stylesheet" href="/assets/css/share.min.css">
+<!-- font -->
+<link rel="stylesheet" href="/assets/css/font.css">
+<!-- <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Pacifico|Ubuntu|Roboto+Mono|Source+Sans+Pro" rel="stylesheet"> -->
+
+<!-- Favicon -->
+<link href="/assets/profile.jpeg" rel="shortcut icon" />
+<link href="/assets/profile.jpeg" rel="apple-touch-icon-precomposed" />
+<!-- Android Lolipop Theme Color -->
+<!-- <meta name="theme-color" content="#1464FB"> -->
+<title>重新檢視 Swift 的 Protocol (二）</title>
+<!-- 百度统计 -->
+
+<!-- 谷歌分析 -->
+
+
+<!-- Android Lolipop Theme Color -->
+<meta name="theme-color" content=" rgb(253,117,36) ">
+</head>
+<body>
+
+<!-- 顶部锚点 -->
+<a id="htmlup" name="htmlup"></a>
+<!-- 引入博文顶部选项 -->
+
+<header id="post-header" style="background-color:rgb(253,117,36);">
+  <div class="top-center">
+      <div class="logo">
+          <a href="/" title="my awesome webtitle" style="color: white;">Pofat Develops</a>
+      </div>
+      <nav class="top-nav">
+          <ul>
+              
+                <li><a href="/" style="color: white;">Articles</a></li>
+              
+                <li><a href="/tags.html" style="color: white;">Tags</a></li>
+              
+                <li><a href="/timeline.html" style="color: white;">Timeline</a></li>
+              
+                <li><a href="/about.html" style="color: white;">About</a></li>
+              
+          </ul>
+      </nav>
+      <div id="top-boot">
+        <a href="javascript:;" id="boot1" style="display:block;" onclick="document.getElementById('boot-area').style.display='block';document.getElementById('boot1').style.display='none';document.getElementById('boot2').style.display='block';"><img src="/assets/boot_white.png" alt=""></a>
+        <a href="javascript:;" id="boot2" style="display: none;" onclick="document.getElementById('boot-area').style.display='none';document.getElementById('boot1').style.display='block';document.getElementById('boot2').style.display='none';"><img src="/assets/boot_white.png" alt=""></a>
+      </div>
+  </div>
+
+</header>
+
+
+<!-- 引入移动下拉选项 -->
+<div id="boot-area">
+    <ul>
+        
+          <a href="/"><li>Articles</li></a>
+        
+          <a href="/tags.html"><li>Tags</li></a>
+        
+          <a href="/timeline.html"><li>Timeline</li></a>
+        
+          <a href="/about.html"><li>About</li></a>
+        
+    </ul>
+</div>
+
+<!-- 引入博文顶部样式 -->
+<!-- 版本一 垃圾 -->
+<!-- <div class="wow fadeIn top" data-wow-duration="3.5s" >
+    <span class="wow fadeInUp" data-wow-delay="0.2s">重新檢視 Swift 的 Protocol (二）</span>
+    <span class="wow fadeInUp" data-wow-delay="0.4s"></span>
+    <span class="wow fadeInUp" data-wow-delay="0.4s"></span>
+    <span class="wow fadeInUp" data-wow-delay="0.6s">作者&nbsp;&nbsp;|&nbsp;&nbsp;Pofat</span>
+</div> -->
+
+<!-- 版本二 可切换页面 -->
+
+<div class="post-top" style="background-color:rgb(253,117,36);">
+  <!-- 页面宽度大于800px -->
+  <div class="left-area">
+    
+      <a href="javascript:;" class="btn bounceInLeft animated" onmouseover="showLeft();this.style.color='rgb(253,117,36)';" onmouseout="goneLeft();this.style.color='rgba(0,0,0,.2)';"><</a>
+      <div id="left-tab" style="display:none;"><span class="left-san"></span><span class="left-main" style="color:rgb(253,117,36);"><sapn class="main">到頂了</sapn></span></div>
+    
+  </div>
+  <div class="post-titlearea">
+    <span class="wow fadeInUp" data-wow-delay="0.2s">重新檢視 Swift 的 Protocol (二）</span>
+    <!-- <span class="wow fadeInUp" data-wow-delay="0.4s"></span> -->
+    <!-- <span class="wow fadeInUp" data-wow-delay="0.4s"></span> -->
+    <!-- <span class="wow fadeInUp" data-wow-delay="0.6s">作者&nbsp;&nbsp;|&nbsp;&nbsp;Pofat</span> -->
+  </div>
+  <div class="right-area">
+    
+      <a href="javascript:;" class="btn bounceInRight self-animated" onmouseover="showRight();this.style.color='rgb(253,117,36)';" onmouseout="goneRight();this.style.color='rgba(0,0,0,.2)';">></a>
+      <div id="right-tab" style="display:none;"><span class="right-san"></span><span class="right-main" style="color:rgb(253,117,36);"><sapn class="main">到底了</sapn></span></div>
+    
+  </div>
+
+  <!-- 页面宽度小于800px -->
+  <div class="post-changearea">
+    
+      <a href="javascript:;" class="leftchange" style="border-right: 1px solid rgb(253,117,36);border-bottom: 2px solid rgb(253,117,36);"><span><br>到頂了</span></a>
+    
+    
+      <a href="javascript:;" class="rightchange" style="border-left: 1px solid rgb(253,117,36);border-bottom: 2px solid rgb(253,117,36);"><span><br>到底了</span></a>
+    
+  </div>
+</div>
+
+
+<div class="markdown-body fadeInUp animated">
+
+  
+
+  <!-- 文章内容 -->
+  <h2 id="為何再講-protocol">為何再講 Protocol</h2>
+
+<p>曾經在 Swift 2 和 3 交接之處趁著 Apple 推動 PoP 之勢給了幾個跟 Protocol 有關的 talk，過了幾年以為 Swift 應該都是 Protocol 的天下，卻發現不然，反倒是自己遇到的專案和朋友的專案都有「這3小 Protocol」、「到處都 Protocol 追 code 真的好麻煩」的經驗。經過分析，大概可以找出兩個根本性的問題（也許還有其它的，但我只想到這兩個啦）：</p>
+
+<ol>
+  <li>Protocol 僅僅只用來做為一層長得跟 Object 一樣的皮</li>
+  <li>PAT （Protocol with Associated Type）無法被用來做為一種 Type (Existential Container)</li>
+</ol>
+
+<p>打算在第一集探討第 1 點，第二集講第 2 點，但是心情上比較想先講第 2 集還有第 3 集所以就先開幹，第一集日後再講。</p>
+
+<h2 id="pat">PAT</h2>
+
+<p>PAT 就是一個有泛型能力的 Protocol，讓你的 Protocol 更能被廣泛運用，更強大，最常見的就是 Sequence ，我們可以從 source code 找到它定義如下（簡化過）</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">protocol</span> <span class="kt">Sequence</span> <span class="p">{</span>
+    <span class="kd">associatedtype</span> <span class="kt">Element</span>
+    <span class="kd">associatedtype</span> <span class="kt">Iterator</span> <span class="p">:</span> <span class="kt">IteratorProtocol</span> <span class="k">where</span> <span class="kt">Iterator</span><span class="o">.</span><span class="kt">Element</span> <span class="o">==</span> <span class="kt">Element</span>
+
+    <span class="kd">func</span> <span class="nf">makeIterator</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Iterator</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>如此一來，我們就可以做出一群皆吐出 Int 的各種 Iterator ，或者是 String，可以大大地提昇程式碼的共用度，可惜的是 PAT 目前有些使用上的困境，在了解這個困境前我們必須先講一下什麼是 Existential Container 和 Witness Table。</p>
+
+<h2 id="existential--witness">Existential &amp; Witness</h2>
+
+<p>在程式碼中打出 Protocol 名稱時有幾種情境，有時我們用它來做為一些約束條件，或者我們直接把它做為一種「型別」。不知道大家有沒有想過，Protocol 本身其實不具備實作的實體，但為什麼可以當做一種型別來使用呢？</p>
+
+<p>這是因為 Swift Compiler 使用了 Existential Container ，下例中兩個看似相同的 instance 其實卻有完全不同的 memory layout</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">protocol</span> <span class="kt">MyProcotol</span> <span class="p">{}</span>
+
+<span class="kd">struct</span> <span class="kt">MyStruct</span> <span class="p">{</span>
+  <span class="k">let</span> <span class="nv">x</span> <span class="o">=</span> <span class="mi">1</span>
+  <span class="k">let</span> <span class="nv">y</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="p">}</span>
+<span class="c1">// What's the difference of following two?</span>
+<span class="k">let</span> <span class="nv">existentialContainer</span><span class="p">:</span> <span class="kt">MyProtocol</span> <span class="o">=</span> <span class="kt">MyStruct</span><span class="p">()</span>
+<span class="k">let</span> <span class="nv">structInstance</span> <span class="o">=</span> <span class="kt">MyStruct</span><span class="p">()</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="kt">MemoryLayout</span><span class="o">.</span><span class="nf">size</span><span class="p">(</span><span class="nv">ofValue</span><span class="p">:</span> <span class="n">existentialContainer</span><span class="p">))</span> <span class="c1">// 40</span>
+<span class="nf">print</span><span class="p">(</span><span class="kt">MemoryLayout</span><span class="o">.</span><span class="nf">size</span><span class="p">(</span><span class="nv">ofValue</span><span class="p">:</span> <span class="n">structInstance</span><span class="p">))</span> <span class="c1">// 16</span></code></pre></figure>
+
+<p>原因正是因為當你將一個型別明確地 (Explicitly) 指為一個 Protocol 時，我們指的不是一個具體的實體（型別），而是實作了該 Protocol 規範的「所有可能」型別都能套用於此，很明顯這是一個 runtime 才能決定的事情，compiler 可能無法在 compile time 知道你送誰進來，於是在這種情況下，我們需要一個萬用的中間層（沒有中間層解決不了的事啊），所以其實你指定的並不是 Protocol 這個型別，而是該 Protocol 的 Existential Container 。</p>
+
+<p>一個 Existential Container 結構如下圖，長度是 5 個 machine word ，可從前例的 memory layout size 得知</p>
+
+<figure class="image">
+  <img src="https://i.imgur.com/3pOt339.png" alt="圖片來源：https://developer.apple.com/videos/play/wwdc2016/416/" />
+  <figcaption>圖片來源：https://developer.apple.com/videos/play/wwdc2016/416/</figcaption>
+</figure>
+
+<p><br /></p>
+
+<p>其中 value buffer 記錄了實際型別的 properties ，看到這你一定馬上想，3 個 word 哪夠啊？？？ 事實上是，若超過 3 個 word 來存放的 value type ，會再另外要一塊空間，value buffer 裡就只會放一個 pointer 指向這個空間；反之則依序存放，我們可以從下面的範例中探索一下實際的情況：</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">struct</span> <span class="kt">ExistentialContainer</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">valueBuffer</span><span class="p">:</span> <span class="p">(</span><span class="kt">Int</span><span class="p">,</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">Int</span><span class="p">)</span>
+    <span class="k">var</span> <span class="nv">vwt</span><span class="p">:</span> <span class="kt">UnsafePointer</span><span class="o">&lt;</span><span class="kt">ValueWitness</span><span class="o">&gt;</span>
+    <span class="k">var</span> <span class="nv">pwt</span><span class="p">:</span> <span class="kt">UnsafePointer</span><span class="o">&lt;</span><span class="kt">ProtocolWitness</span><span class="o">&gt;</span>
+<span class="p">}</span>
+
+<span class="kd">protocol</span> <span class="kt">Fooable</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">foo</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="kt">Concrete</span><span class="p">:</span> <span class="kt">Fooable</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">x</span> <span class="o">=</span> <span class="mi">99</span>
+    <span class="k">let</span> <span class="nv">y</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="kd">func</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"foo in concrete"</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// In main.swift</span>
+<span class="k">var</span> <span class="nv">concrete</span><span class="p">:</span> <span class="kt">Fooable</span> <span class="o">=</span> <span class="kt">Concrete</span><span class="p">()</span>
+<span class="nf">withUnsafePointer</span><span class="p">(</span><span class="nv">to</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">concrete</span><span class="p">)</span> <span class="p">{</span> <span class="n">pointer</span> <span class="k">in</span>
+    <span class="n">pointer</span><span class="o">.</span><span class="nf">withMemoryRebound</span><span class="p">(</span><span class="nv">to</span><span class="p">:</span> <span class="kt">ExistentialContainer</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">capacity</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span> <span class="n">wpointer</span> <span class="k">in</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">wpointer</span><span class="o">.</span><span class="n">pointee</span><span class="o">.</span><span class="n">valueBuffer</span><span class="o">.</span><span class="mi">0</span><span class="p">)</span> <span class="c1">// 99</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">wpointer</span><span class="o">.</span><span class="n">pointee</span><span class="o">.</span><span class="n">valueBuffer</span><span class="o">.</span><span class="mi">1</span><span class="p">)</span> <span class="c1">// 2</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>上例中的 ExistentialContainer struct 和實際上的 memory layout 是一模一樣的。而 vwt 區塊則 存放一個指向 Value Witness Table 的 pointer，value witness table 記載了 value 的 allocate, copy, destruct 和 deallocate； 至於 pwt 則是指向 Protocol Witness Table 的 pointer，這裡可以找到所有實作了 protocol 裡 method 的實體位置（欲知更多細節，推薦收看 WWDC 2016 的 <a href="https://developer.apple.com/videos/play/wwdc2016/416/">Understanding Swift Performance</a>）</p>
+
+<p>那，為什麼要講這個🤔</p>
+
+<p>因為 compiler 無法為 PAT 生成 Existential Container 啦！！！</p>
+
+<p>若你一時無法意會這句話是什麼意思，請試著寫出這樣的 code: <code class="highlighter-rouge">let sequences: [Sequence]</code></p>
+
+<p>寫完後你就會得到以下警報</p>
+
+<blockquote>
+  <p>Protocol ‘Sequence’ can only be used as a generic constraint because it has Self or associated type requirements.</p>
+</blockquote>
+
+<p>如果這個例子你無法感同身受的話，請容許我展示另一個例子，在簡單的網路請求情境下我常用這個從<a href="https://onevcat.com/#blog">喵神</a>那學來的 protocol-oriented newtork request architecture （以 RxSwift 呈現）</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">import</span> <span class="kt">Foundation</span>
+<span class="kd">import</span> <span class="kt">RxSwift</span>
+
+<span class="c1">// Requests </span>
+<span class="kd">enum</span> <span class="kt">HTTPMethod</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="kt">POST</span><span class="p">,</span> <span class="kt">GET</span>
+<span class="p">}</span>
+
+<span class="c1">// Define what a request is</span>
+<span class="kd">protocol</span> <span class="kt">Request</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span>
+    <span class="k">var</span> <span class="nv">method</span><span class="p">:</span> <span class="kt">HTTPMethod</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span>
+    <span class="k">var</span> <span class="nv">param</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span>
+
+    <span class="kd">associatedtype</span> <span class="kt">ResponseObject</span><span class="p">:</span> <span class="kt">Decodable</span>
+<span class="p">}</span>
+
+<span class="c1">// Define what shoud have to send a request</span>
+<span class="kd">protocol</span> <span class="kt">RequestSender</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">base</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span>
+    <span class="kd">func</span> <span class="n">send</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Request</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">r</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Observable</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">.</span><span class="kt">ResponseObject</span><span class="p">?</span><span class="o">&gt;</span>
+<span class="p">}</span>
+
+<span class="c1">// An object who can send out Request</span>
+<span class="kd">struct</span> <span class="kt">URLSessionRequestSender</span><span class="p">:</span> <span class="kt">RequestSender</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">base</span> <span class="o">=</span> <span class="s">"http://www.dummy.api"</span>
+    <span class="kd">func</span> <span class="n">send</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Request</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">r</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Observable</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">.</span><span class="kt">ResponseObject</span><span class="p">?</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">url</span> <span class="o">=</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="n">base</span><span class="o">.</span><span class="nf">appending</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">path</span><span class="p">))</span><span class="o">!</span>
+        <span class="k">var</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">URLRequest</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">httpMethod</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">method</span><span class="o">.</span><span class="n">rawValue</span>
+
+        <span class="k">if</span> <span class="k">let</span> <span class="nv">body</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="kt">JSONSerialization</span><span class="o">.</span><span class="nf">data</span><span class="p">(</span><span class="nv">withJSONObject</span><span class="p">:</span> <span class="n">r</span><span class="o">.</span><span class="n">param</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="o">.</span><span class="n">prettyPrinted</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">httpBody</span> <span class="o">=</span> <span class="n">body</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="kt">Observable</span><span class="o">.</span><span class="n">create</span> <span class="p">{</span> <span class="n">subscriber</span> <span class="k">in</span>
+            <span class="k">let</span> <span class="nv">task</span> <span class="o">=</span>  <span class="kt">URLSession</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">dataTask</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">data</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
+                <span class="k">if</span> <span class="k">let</span> <span class="nv">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">,</span> <span class="k">let</span> <span class="nv">object</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="kt">JSONDecoder</span><span class="p">()</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">T</span><span class="o">.</span><span class="kt">ResponseObject</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="n">data</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">subscriber</span><span class="o">.</span><span class="nf">onNext</span><span class="p">(</span><span class="n">object</span><span class="p">)</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="n">subscriber</span><span class="o">.</span><span class="nf">onError</span><span class="p">(</span><span class="n">error</span><span class="o">!</span><span class="p">)</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="n">task</span><span class="o">.</span><span class="nf">resume</span><span class="p">()</span>
+            <span class="k">return</span> <span class="kt">Disposables</span><span class="o">.</span><span class="nf">create</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// An object</span>
+<span class="kd">struct</span> <span class="kt">User</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">String</span>
+    <span class="k">let</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span>
+    <span class="k">let</span> <span class="nv">gender</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">}</span>
+
+<span class="c1">// A real request</span>
+<span class="kd">struct</span> <span class="kt">GetUserRequest</span><span class="p">:</span> <span class="kt">Request</span> <span class="p">{</span>
+    <span class="kd">typealias</span> <span class="kt">ResponseObject</span> <span class="o">=</span> <span class="kt">User</span>
+    <span class="k">let</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">String</span>
+    <span class="k">var</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s">"/users/</span><span class="se">\(</span><span class="n">id</span><span class="se">)</span><span class="s">"</span>
+    
+    <span class="k">var</span> <span class="nv">param</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]</span>
+    <span class="k">let</span> <span class="nv">method</span><span class="p">:</span> <span class="kt">HTTPMethod</span> <span class="o">=</span> <span class="o">.</span><span class="kt">GET</span>
+
+    <span class="nf">init</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">param</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[:])</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">id</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">param</span> <span class="o">=</span> <span class="n">param</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// usage example</span>
+<span class="kd">func</span> <span class="nf">example</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">GetUserRequest</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="s">"a12345"</span><span class="p">,</span> <span class="nv">param</span><span class="p">:</span> <span class="p">[</span><span class="s">"foo"</span><span class="p">:</span> <span class="s">"bar"</span><span class="p">])</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="kt">URLSessionRequestSender</span><span class="p">()</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="o">.</span><span class="nf">subscribe</span><span class="p">(</span><span class="nv">onNext</span><span class="p">:</span> <span class="p">{</span> <span class="n">user</span> <span class="k">in</span>
+            <span class="k">if</span> <span class="k">let</span> <span class="nv">user</span> <span class="o">=</span> <span class="n">user</span> <span class="p">{</span>
+                <span class="nf">print</span><span class="p">(</span><span class="s">"user is : </span><span class="se">\(</span><span class="n">user</span><span class="o">.</span><span class="n">name</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nf">print</span><span class="p">(</span><span class="s">"got nothing"</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">})</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>上例優雅地利用 associatedtype 來把 Request 相關的元素都集中在一個資料結構裡，讓我們可以用一個 sender （也可以替換成不同實作）來送出各種不同的 request 而且 return type 都是在 compile time 就能夠得知的，the power of generic and protocol！</p>
+
+<p>然而，當你開始開心地玩下去，發現你想要接受各式不同 Request 的 queue 時，你寫出了 <code class="highlighter-rouge">var request: Request</code></p>
+
+<blockquote>
+  <p>Protocol ‘Request’ can only be used as a generic constraint because it has Self or associated type requirements.</p>
+</blockquote>
+
+<figure class="image">
+  <img src="https://i.imgur.com/ntGKYSh.png" alt="" />
+  <figcaption></figcaption>
+</figure>
+
+<p><br /></p>
+
+<p>好吧，收捨破碎的心， code 還是要寫完不然會沒工作，遇到這個狀況該怎麼辦呢？先講終極結論，這個問題應該就在不久後的將來就會被解決，Swift 總有一天會支援 let request: Request<ResponseObject: User=""> 的寫法（或者可能是 some Request，可以參考SE-0244）。但在那天到來前，Swift 社群有很多 workaround 的討論以繞開這個問題，type erasure 的技巧如 AnyIterator、Any XXX 等都可以，不過都還很麻煩而且一定要再引入另一個 container。直到最近我看到一個讓我🤯🤯🤯的天才想法：</ResponseObject:></p>
+
+<blockquote>
+  <p>Why don’t you write Protocol Witness Table by yourself？</p>
+</blockquote>
+
+<p>一口氣解開了 PAT 的問題，更打開了一個實體只能有一種 Protocol 實作的限制，根本神之思維啊啊！！！</p>
+
+<p>欲知詳情，請期待第三集</p>
+
+<h3 id="後記與參考資料">後記與參考資料：</h3>
+
+<p>會開始動手寫這篇始於最近和友人 Liyao Chen 還有 Ethan Huang 直接間接地小聊、提供資料和我個人腦補，又看到 Rob Napier 哥重出江湖<a href="http://robnapier.net/">講 protocol</a>（精彩勿錯過）以及 Brandon Willams 和對此議題的神之切入角度，就將這段歷程寫下來。</p>
+
+
+  <!-- 引入share模块 -->
+  
+  <div class="social-share-wrapper">
+    <div class="social-share"></div>
+  </div>
+
+
+<!-- share.js -->
+<script src="/assets/js/social-share.min.js"></script>
+<script>
+  socialShare('.social-share', {
+    sites: [
+      
+        'twitter'
+        ,
+        
+      
+        'facebook'
+        ,
+        
+      
+        'linkedin'
+        
+      
+    ],
+    wechatQrcodeTitle: "分享到微信朋友圈",
+    wechatQrcodeHelper: '期待在朋友圈见到这篇文章'
+  });
+</script>
+
+</div>
+
+<!-- 底部锚点 -->
+<a id="htmldown" name="htmldown"></a>
+<!-- 引入评论模块 -->
+
+
+
+
+
+
+<!-- 引入goto模块 -->
+<div class="bounceInRight animated go">
+  <a title="到最上面切換不同文章" class="gototop" href="#htmlup" target="_self">
+    <div class="box" style="font-family:'Arial';">
+        Top
+    </div>
+  </a>
+  <a title="底部有評論" class="gotobottom" href="#htmldown" target="_self">
+    <div class="box" style="font-family:'Arial';">
+        Foot
+    </div>
+  </a>
+</div>
+
+<!-- 引入页面底部模块 -->
+<footer id="bottom">
+  <br>
+  <span>Pofat Develops ©
+  
+  
+  2019
+  <br>
+  Powered by <a href="https://www.jekyll.com.cn/">Jekyll</a> | <a href="https://github.com/xukimseven/HardCandy-Jekyll">HardCandy-Jekyll</a></span>
+</footer>
+
+
+<!-- 引用wow.js的动画效果 -->
+<script src="/assets/js/wow.js"></script>
+<script>
+    var wow = new WOW({
+        boxClass: 'wow',
+        animateClass: 'animated',
+        // offset: 600,
+        mobile: true,
+        live: true
+    });
+    wow.init();
+</script>
+<!-- 页面刷新回到顶部 -->
+<script>
+    window.onbeforeunload = function(){
+        //刷新后页面自动回到顶部
+        document.documentElement.scrollTop = 0;  //ie下
+        document.body.scrollTop = 0;  //非ie
+    }
+</script>
+<script src="/assets/js/main.js"></script>
+</body>
+</html>
