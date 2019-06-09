@@ -1,0 +1,463 @@
+<!-- 博文的布局-Layout -->
+<!DOCTYPE html>
+<html>
+<head>
+<!-- 引入head标签 -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-sclable=0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="description" content="#0x8badf00d 🤮" />
+<meta name="keywords" content="iOS, Swift" />
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/media.css">
+<link rel="stylesheet" href="/assets/css/animate.min.css">
+<link rel="stylesheet" href="/assets/css/pygments/pygments_pastie.css">
+<link rel="stylesheet" href="/assets/css/github-markdown.css">
+<!-- SNS-icon -->
+<script src="//at.alicdn.com/t/font_856428_y9z6nq7zf5.js"></script>
+<!-- share.css -->
+<link rel="stylesheet" href="/assets/css/share.min.css">
+<!-- font -->
+<link rel="stylesheet" href="/assets/css/font.css">
+<!-- <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Pacifico|Ubuntu|Roboto+Mono|Source+Sans+Pro" rel="stylesheet"> -->
+
+<!-- Favicon -->
+<link href="/assets/profile.jpeg" rel="shortcut icon" />
+<link href="/assets/profile.jpeg" rel="apple-touch-icon-precomposed" />
+<!-- Android Lolipop Theme Color -->
+<!-- <meta name="theme-color" content="#1464FB"> -->
+<title>重新檢視 Swift 的 Protocol (三）</title>
+<!-- 百度统计 -->
+
+<!-- 谷歌分析 -->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141693863-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-141693863-1');
+</script>
+
+
+<!-- Android Lolipop Theme Color -->
+<meta name="theme-color" content=" rgb(253,117,36) ">
+</head>
+<body>
+
+<!-- 顶部锚点 -->
+<a id="htmlup" name="htmlup"></a>
+<!-- 引入博文顶部选项 -->
+
+<header id="post-header" style="background-color:rgb(253,117,36);">
+  <div class="top-center">
+      <div class="logo">
+          <a href="/" title="my awesome webtitle" style="color: white;">Pofat Develops</a>
+      </div>
+      <nav class="top-nav">
+          <ul>
+              
+                <li><a href="/" style="color: white;">Articles</a></li>
+              
+                <li><a href="/tags.html" style="color: white;">Tags</a></li>
+              
+                <li><a href="/timeline.html" style="color: white;">Timeline</a></li>
+              
+                <li><a href="/about.html" style="color: white;">About</a></li>
+              
+          </ul>
+      </nav>
+      <div id="top-boot">
+        <a href="javascript:;" id="boot1" style="display:block;" onclick="document.getElementById('boot-area').style.display='block';document.getElementById('boot1').style.display='none';document.getElementById('boot2').style.display='block';"><img src="/assets/boot_white.png" alt=""></a>
+        <a href="javascript:;" id="boot2" style="display: none;" onclick="document.getElementById('boot-area').style.display='none';document.getElementById('boot1').style.display='block';document.getElementById('boot2').style.display='none';"><img src="/assets/boot_white.png" alt=""></a>
+      </div>
+  </div>
+
+</header>
+
+
+<!-- 引入移动下拉选项 -->
+<div id="boot-area">
+    <ul>
+        
+          <a href="/"><li>Articles</li></a>
+        
+          <a href="/tags.html"><li>Tags</li></a>
+        
+          <a href="/timeline.html"><li>Timeline</li></a>
+        
+          <a href="/about.html"><li>About</li></a>
+        
+    </ul>
+</div>
+
+<!-- 引入博文顶部样式 -->
+<!-- 版本一 垃圾 -->
+<!-- <div class="wow fadeIn top" data-wow-duration="3.5s" >
+    <span class="wow fadeInUp" data-wow-delay="0.2s">重新檢視 Swift 的 Protocol (三）</span>
+    <span class="wow fadeInUp" data-wow-delay="0.4s"></span>
+    <span class="wow fadeInUp" data-wow-delay="0.4s"></span>
+    <span class="wow fadeInUp" data-wow-delay="0.6s">作者&nbsp;&nbsp;|&nbsp;&nbsp;Pofat</span>
+</div> -->
+
+<!-- 版本二 可切换页面 -->
+
+<div class="post-top" style="background-color:rgb(253,117,36);">
+  <!-- 页面宽度大于800px -->
+  <div class="left-area">
+    
+      <a href="javascript:;" class="btn bounceInLeft animated" onmouseover="showLeft();this.style.color='rgb(253,117,36)';" onmouseout="goneLeft();this.style.color='rgba(0,0,0,.2)';"><</a>
+      <div id="left-tab" style="display:none;"><span class="left-san"></span><span class="left-main" style="color:rgb(253,117,36);"><sapn class="main">到頂了</sapn></span></div>
+    
+  </div>
+  <div class="post-titlearea">
+    <span class="wow fadeInUp" data-wow-delay="0.2s">重新檢視 Swift 的 Protocol (三）</span>
+    <!-- <span class="wow fadeInUp" data-wow-delay="0.4s"></span> -->
+    <!-- <span class="wow fadeInUp" data-wow-delay="0.4s"></span> -->
+    <!-- <span class="wow fadeInUp" data-wow-delay="0.6s">作者&nbsp;&nbsp;|&nbsp;&nbsp;Pofat</span> -->
+  </div>
+  <div class="right-area">
+    
+      <a href="/2019/05/21/%E9%87%8D%E6%96%B0%E6%AA%A2%E8%A6%96-swift-%E7%9A%84-protocol-%E4%BA%8C.html" class="btn bounceInRight self-animated" onmouseover="showRight();this.style.color='rgb(253,117,36)';" onmouseout="goneRight();this.style.color='rgba(0,0,0,.2)';">></a>
+      <div id="right-tab" style="display:none;"><span class="right-san"></span><span class="right-main" style="color:rgb(253,117,36);"><sapn class="main">重新檢視 Swift 的 Protocol (二）</sapn></span></div>
+    
+  </div>
+
+  <!-- 页面宽度小于800px -->
+  <div class="post-changearea">
+    
+      <a href="javascript:;" class="leftchange" style="border-right: 1px solid rgb(253,117,36);border-bottom: 2px solid rgb(253,117,36);"><span><br>到頂了</span></a>
+    
+    
+      <a href="/2019/05/21/%E9%87%8D%E6%96%B0%E6%AA%A2%E8%A6%96-swift-%E7%9A%84-protocol-%E4%BA%8C.html" class="rightchange" style="border-left: 1px solid rgb(253,117,36);border-bottom: 2px solid rgb(253,117,36);"><span>下一篇<br><br>重新檢視 Swift 的 Protocol (二）</span></a>
+    
+  </div>
+</div>
+
+
+<div class="markdown-body fadeInUp animated">
+
+  
+
+  <!-- 文章内容 -->
+  <p>讓我們直接來到三部曲的終章，為了營造終局的高潮我塞了不少資訊在這篇文章裡，大家先喝點水伸展一下。</p>
+
+<p><img src="https://i.imgur.com/rMFuHjT.jpg" alt="really" /></p>
+
+<p>前篇提到了一個破天荒的想法，自己實做一個 Protocol Witness Table，所以我們先來深入點看看 Protocol Witness Table，首先是 compiler 在 SIL 階段做了什麼事（<a href="https://github.com/apple/swift/blob/d24bc387973bcf60f5596ff387b996c1eb356456/docs/SIL.rst#witness-tables">官方文件</a>），首先文件裡提到：</p>
+
+<blockquote>
+  <p>A witness table is emitted for every declared explicit conformance.</p>
+</blockquote>
+
+<p>所以每當我們當聲明一個型別遵守(confrom to)某個 Protocol 時就會生成一個 witness table，而這個 witness table 會用「型別：Protocol」這組合生成一個獨特的 id 來當 key 保存著，文件裡共定義五種遵守 protocol 的可能性，我們只看最一般的一般性遵守</p>
+
+<p><code class="highlighter-rouge">protocol-conformance ::= normal-protocol-conformance</code></p>
+
+<p>因為每個型別只能遵守一個 protocol 一次（重點重點！），所以可以保證這樣的配對是 1:1，而且也只有這個一般的遵守方式會直接與 witness table 關聯，其它比較複雜的情況多半是間接或多個 table 之間的關聯。至於一個 witness table 會由 4 個 entry 組成以描述所有相關資訊，我們只在意最重要的一個 method entry：</p>
+
+<p><code class="highlighter-rouge">sil-witness-entry ::= 'method' sil-decl-ref ':' sil-function-name</code></p>
+
+<p>這裡很單純，前者是 protocol 所定義的介面，後者是真實的 method 實作，只是把它們連結起來而已，如這裡太抽象我們可以看一下圖和程式碼，就拿 WWDC 2016 <a href="https://developer.apple.com/videos/play/wwdc2016/416/">Session 416</a> 的範例來說：</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">protocol</span> <span class="kt">Drawable</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">draw</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="kt">Point</span><span class="p">:</span> <span class="kt">Drawable</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">x</span><span class="p">:</span> <span class="kt">Int</span>
+    <span class="k">var</span> <span class="nv">y</span><span class="p">:</span> <span class="kt">Int</span>
+
+    <span class="kd">func</span> <span class="nf">draw</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"Draw a point at (</span><span class="se">\(</span><span class="n">x</span><span class="se">)</span><span class="s">, </span><span class="se">\(</span><span class="n">y</span><span class="se">)</span><span class="s">)"</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Main</span>
+<span class="k">let</span> <span class="nv">point</span><span class="p">:</span> <span class="kt">Drawable</span> <span class="o">=</span> <span class="kt">Point</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">point</span><span class="o">.</span><span class="nf">draw</span><span class="p">()</span></code></pre></figure>
+
+<p>我們這裡的變數 point 會是個 Existential Container，因為我們宣告它的型別是個 protocol，結合前述所說，container 和 protocol witness table 長得像這樣（大家還記得<a href="https://pofat.dev/2019/05/21/%E9%87%8D%E6%96%B0%E6%AA%A2%E8%A6%96-swift-%E7%9A%84-protocol-%E4%BA%8C.html">第二集</a>講到 container 的模樣嗎？）</p>
+
+<figure class="image">
+  <img src="https://i.imgur.com/WwlbY0v.png" alt="圖片來源：https://developer.apple.com/videos/play/wwdc2016/416/" />
+  <figcaption>圖片來源：https://developer.apple.com/videos/play/wwdc2016/416/</figcaption>
+</figure>
+
+<p><br /></p>
+
+<p>如果用程式碼表示，這個 point 的 container 與 Point: Drawable 的 witness table 會像這樣：</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">struct</span> <span class="kt">ExistentialContainer</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">valueBuffer</span><span class="p">:</span> <span class="p">(</span><span class="kt">Int</span><span class="p">,</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">Int</span><span class="p">)</span>
+    <span class="k">var</span> <span class="nv">vwt</span><span class="p">:</span> <span class="kt">UnsafePointer</span><span class="o">&lt;</span><span class="kt">ValueWitness</span><span class="o">&gt;</span>
+    <span class="k">var</span> <span class="nv">pwt</span><span class="p">:</span> <span class="kt">UnsafePointer</span><span class="o">&lt;</span><span class="kt">ProtocolWitness</span><span class="o">&gt;</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="kt">ProtocolWitness</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">descriptor</span><span class="p">:</span> <span class="kt">ProtocolConformanceDescriptor</span>
+    <span class="k">var</span> <span class="nv">draw</span><span class="p">:</span> <span class="kt">FunctionRef</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>懷疑論者至此如果還有懷疑，可以試著在前面的 point.draw() 打個中斷點，執行程式並停在該處，在 lldb 裡讀一下 register ，可以看到：</p>
+
+<figure class="image">
+  <img src="https://i.imgur.com/L07LC6v.png" alt="注意 $rsi 暫存器" />
+  <figcaption>注意 $rsi 暫存器</figcaption>
+</figure>
+
+<p><br />
+其中 0x000000010fb21978 是 protocol witness table，我們檢查一下裡面的內容</p>
+<figure class="image">
+  <img src="https://i.imgur.com/YsP4ywG.png" alt="" />
+  <figcaption></figcaption>
+</figure>
+
+<p><br />
+第一個是指向 descriptor ，第二個就是指向我們 draw() 在 point 的實作，我們將第二個的位址反組譯一下，可以看到它的確就是 Point 對 Drawable 裡 draw() 的實作（在我程式裡是第 19 行沒錯）</p>
+
+<figure class="image">
+  <img src="https://i.imgur.com/EGbNYi8.png" alt="" />
+  <figcaption></figcaption>
+</figure>
+
+<p><br /></p>
+
+<p>探究至此，想必大家都已經有很具體的認知了，那我們想想，這樣的設計可能會有什麼問題？</p>
+
+<p>除了前集提到的 PAT 不能生成 container 外，有時這 1對1 的關係（一型別只能遵守一個 protocol 一次）讓我們不能以最大效益共用程式碼，比如前一集提到 Request （忘記來<a href="https://pofat.dev/2019/05/21/%E9%87%8D%E6%96%B0%E6%AA%A2%E8%A6%96-swift-%E7%9A%84-protocol-%E4%BA%8C.html">這裡</a>看），如果我們想要生成不同回傳型別的 Request ，就要宣告不同的 concrete type ，比如 UserRequest，ListsRequest等，其實大同小異，這樣就要宣告一個新型別好像有點浪費？</p>
+
+<h2 id="不如自己來實作-witness-table-吧">不如自己來實作 witness table 吧！</h2>
+
+<p>從前面 Point 和 Drawable 的例子來看，如果我們希望 Point 有不同的畫法呢？比如空心點、實心點或者虛線點，這樣勢必要三種型別才能達成啊，不管是純遵守 protocol 或者使用繼承 ！不過方才我們也看到 witness table 在 SIL 的結構，看起來不難搞，其實就是 draw 要保存一個實作的位址嘛！在 Swift 裡 function 可是 “first-class citizen”，也就是 function 可以當作變數來運用，這提供了一個大好的契機，我們可以把 Drawable witness table 的 draw property 改寫一下</p>
+
+<p><code class="highlighter-rouge">var draw: FunctionRef -&gt; var draw: (Shape) -&gt; ()</code></p>
+
+<p>整個例子就可以改寫成</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="c1">// From:</span>
+<span class="kd">protocol</span> <span class="kt">Drawable</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">draw</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c1">// To:</span>
+<span class="kd">struct</span> <span class="kt">Drawing</span><span class="o">&lt;</span><span class="kt">Shape</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">draw</span><span class="p">:</span> <span class="p">(</span><span class="kt">Shape</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c1">// 用來畫實心點</span>
+<span class="k">let</span> <span class="nv">solidPointDrawer</span> <span class="o">=</span> <span class="kt">Drawing</span><span class="o">&lt;</span><span class="kt">CGPoint</span><span class="o">&gt;</span> <span class="p">{</span> <span class="n">point</span> <span class="k">in</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"draw solid point: (</span><span class="se">\(</span><span class="n">point</span><span class="o">.</span><span class="n">x</span><span class="se">)</span><span class="s">, </span><span class="se">\(</span><span class="n">point</span><span class="o">.</span><span class="n">y</span><span class="se">)</span><span class="s">)"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// 用來畫空心點</span>
+<span class="k">let</span> <span class="nv">hollowPointDrawer</span> <span class="o">=</span> <span class="kt">Drawing</span><span class="o">&lt;</span><span class="kt">CGPoint</span><span class="o">&gt;</span> <span class="p">{</span> <span class="n">point</span> <span class="k">in</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"draw hollow point: (</span><span class="se">\(</span><span class="n">point</span><span class="o">.</span><span class="n">x</span><span class="se">)</span><span class="s">, </span><span class="se">\(</span><span class="n">point</span><span class="o">.</span><span class="n">y</span><span class="se">)</span><span class="s">)"</span><span class="p">)</span>
+<span class="p">}</span>                      
+
+<span class="k">let</span> <span class="nv">point</span> <span class="o">=</span> <span class="kt">CGPoint</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">solidPointDrawer</span><span class="o">.</span><span class="nf">draw</span><span class="p">(</span><span class="n">point</span><span class="p">)</span> <span class="c1">// 畫實心點</span>
+<span class="n">hollowPointDrawer</span><span class="o">.</span><span class="nf">draw</span><span class="p">(</span><span class="n">point</span><span class="p">)</span> <span class="c1">// 畫空心點</span></code></pre></figure>
+
+<p>是不是突然就有走入新世界的感覺了呢？打鐵要趁熱，我們繼續把上次的 network rqeust 範例一起用這種方式重新改寫（因為要傳入 handler 且它是個 closure，如果要寫得優雅點需要用 curry 的方式消參數，怕失焦就先借用 RxSwift 該程式碼優雅點）</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">import</span> <span class="kt">Foundation</span>
+<span class="kd">import</span> <span class="kt">RxSwift</span>
+
+<span class="c1">// MARK: Model</span>
+<span class="kd">struct</span> <span class="kt">User</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">Int</span>
+    <span class="k">let</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">}</span>
+
+<span class="k">let</span> <span class="nv">usersDecode</span><span class="p">:</span> <span class="p">(</span><span class="kt">Data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">User</span><span class="p">]?</span> <span class="o">=</span> <span class="p">{</span> <span class="n">data</span> <span class="k">in</span>
+    <span class="k">return</span> <span class="k">try</span><span class="p">?</span> <span class="kt">JSONDecoder</span><span class="p">()</span><span class="o">.</span><span class="nf">decode</span><span class="p">([</span><span class="kt">User</span><span class="p">]</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="n">data</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// MARK: Request related</span>
+<span class="kd">enum</span> <span class="kt">HTTPMethod</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="kt">GET</span>
+    <span class="k">case</span> <span class="kt">POST</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="kt">Request</span><span class="o">&lt;</span><span class="kt">Response</span><span class="p">:</span> <span class="kt">Decodable</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">endpoint</span><span class="p">:</span> <span class="kt">String</span>
+    <span class="k">var</span> <span class="nv">method</span><span class="p">:</span> <span class="kt">HTTPMethod</span>
+    <span class="k">var</span> <span class="nv">param</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]?</span>
+    <span class="k">let</span> <span class="nv">decode</span><span class="p">:</span> <span class="p">(</span><span class="kt">Data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Response</span><span class="p">?</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="kt">RequestSender</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">base</span> <span class="o">=</span> <span class="s">"https://foo.bar"</span>
+    <span class="kd">private</span> <span class="k">let</span> <span class="nv">sendingRequst</span><span class="p">:</span> <span class="p">(</span><span class="kt">URLRequest</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Observable</span><span class="o">&lt;</span><span class="kt">Data</span><span class="o">&gt;</span> <span class="c1">// To abstract your network framework</span>
+    <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">sendingRequst</span><span class="p">:</span> <span class="kd">@escaping(URLRequest)</span> <span class="o">-&gt;</span> <span class="kt">Observable</span><span class="o">&lt;</span><span class="kt">Data</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">sendingRequst</span> <span class="o">=</span> <span class="n">sendingRequst</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="n">send</span><span class="o">&lt;</span><span class="kt">Response</span><span class="p">:</span> <span class="kt">Decodable</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">r</span><span class="p">:</span> <span class="kt">Request</span><span class="o">&lt;</span><span class="kt">Response</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Observable</span><span class="o">&lt;</span><span class="kt">Response</span><span class="p">?</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">url</span> <span class="o">=</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="n">base</span> <span class="o">+</span> <span class="n">r</span><span class="o">.</span><span class="n">endpoint</span><span class="p">)</span><span class="o">!</span>
+        <span class="k">var</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">URLRequest</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">httpMethod</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">method</span><span class="o">.</span><span class="n">rawValue</span>
+        <span class="k">if</span> <span class="k">let</span> <span class="nv">param</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">param</span><span class="p">,</span> <span class="k">let</span> <span class="nv">body</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="kt">JSONSerialization</span><span class="o">.</span><span class="nf">data</span><span class="p">(</span><span class="nv">withJSONObject</span><span class="p">:</span> <span class="n">param</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="o">.</span><span class="n">prettyPrinted</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">httpBody</span> <span class="o">=</span> <span class="n">body</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nf">sendingRequst</span><span class="p">(</span><span class="n">request</span><span class="p">)</span><span class="o">.</span><span class="nf">map</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">decode</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// MARK: Main</span>
+<span class="c1">// Instance of requests and request sender</span>
+<span class="k">let</span> <span class="nv">getUsersRequest</span> <span class="o">=</span> <span class="kt">Request</span><span class="p">(</span><span class="nv">endpoint</span><span class="p">:</span> <span class="s">"/users"</span><span class="p">,</span> <span class="nv">method</span><span class="p">:</span> <span class="o">.</span><span class="kt">GET</span><span class="p">,</span> <span class="nv">param</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">decode</span><span class="p">:</span> <span class="n">usersDecode</span><span class="p">)</span>
+
+<span class="c1">// You can use any other network framework such as Alamofire</span>
+<span class="k">let</span> <span class="nv">urlSessionRequestSender</span> <span class="o">=</span> <span class="kt">RequestSender</span> <span class="p">{</span> <span class="n">request</span> <span class="k">in</span>
+    <span class="k">return</span> <span class="kt">Observable</span><span class="o">&lt;</span><span class="kt">Data</span><span class="o">&gt;.</span><span class="n">create</span> <span class="p">{</span> <span class="n">subscriber</span> <span class="k">in</span>
+        <span class="k">let</span> <span class="nv">task</span> <span class="o">=</span> <span class="kt">URLSession</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">dataTask</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">data</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
+            <span class="k">if</span> <span class="k">let</span> <span class="nv">data</span> <span class="o">=</span> <span class="n">data</span> <span class="p">{</span>
+                <span class="n">subscriber</span><span class="o">.</span><span class="nf">onNext</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="n">subscriber</span><span class="o">.</span><span class="nf">onError</span><span class="p">(</span><span class="n">error</span><span class="o">!</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="n">task</span><span class="o">.</span><span class="nf">resume</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kt">Disposables</span><span class="o">.</span><span class="nf">create</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Actually do request (get users)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">urlSessionRequestSender</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="n">getUsersRequest</span><span class="p">)</span><span class="o">.</span><span class="nf">subscribe</span><span class="p">(</span><span class="nv">onNext</span><span class="p">:</span> <span class="p">{</span> <span class="n">users</span> <span class="k">in</span>
+    <span class="k">guard</span> <span class="k">let</span> <span class="nv">users</span> <span class="o">=</span> <span class="n">users</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span>
+	<span class="p">}</span>
+
+    <span class="nf">print</span><span class="p">(</span><span class="n">users</span><span class="p">)</span>
+<span class="p">})</span></code></pre></figure>
+
+<p>RequestSender 的部分就寫個意思意思（但真的會動），大家可以再自己優化，主要的重點還是在 Request 這個泛型 struct 裡，利用它的泛型資訊再讓 RequestSender 可以處理各種 return type 的 request。</p>
+
+<p>以上，protocol 再檢視三部曲到此結束，希望對大家有幫助，接下來請大家期待第一集（疑？）</p>
+
+<h2 id="後記與參考資料">後記與參考資料</h2>
+
+<p>自己實作 witness table 的想法來自於於 Brandon Willams 的<a href="https://www.fewbutripe.com/talks/#protocol-witnesses">演講</a>（推薦大家值得一看的影片），這個想法實在太酷炫，我一知道後立刻興奮得把自己手邊的 protocol 範例實作一遍，在此感謝大神的指教讓我走入新世界。</p>
+
+  <!-- 引入share模块 -->
+  
+  <div class="social-share-wrapper">
+    <div class="social-share"></div>
+  </div>
+
+
+<!-- share.js -->
+<script src="/assets/js/social-share.min.js"></script>
+<script>
+  socialShare('.social-share', {
+    sites: [
+      
+        'twitter'
+        ,
+        
+      
+        'facebook'
+        ,
+        
+      
+        'linkedin'
+        
+      
+    ],
+    wechatQrcodeTitle: "分享到微信朋友圈",
+    wechatQrcodeHelper: '期待在朋友圈见到这篇文章'
+  });
+</script>
+
+</div>
+
+<!-- 底部锚点 -->
+<a id="htmldown" name="htmldown"></a>
+<!-- 引入评论模块 -->
+
+    <section class="post-footer-item comment">
+      <div id="disqus_thread"></div>
+    </section>
+
+    <script>
+      /**
+       *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+       *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+          s = d.createElement('script');
+        /*写入自己的disqus信息*/
+        s.src = 'https://pofat-dev.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+
+    </script>
+
+
+
+
+
+
+
+<!-- 引入goto模块 -->
+<div class="bounceInRight animated go">
+  <a title="到最上面切換不同文章" class="gototop" href="#htmlup" target="_self">
+    <div class="box" style="font-family:'Arial';">
+        Top
+    </div>
+  </a>
+  <a title="底部有disqus評論" class="gotobottom" href="#htmldown" target="_self">
+    <div class="box" style="font-family:'Arial';">
+        Foot
+    </div>
+  </a>
+</div>
+
+<!-- 引入页面底部模块 -->
+<footer id="bottom">
+  <br>
+  <span>Pofat Develops ©
+  
+  
+  2019
+  <br>
+  Powered by <a href="https://www.jekyll.com.cn/">Jekyll</a> | <a href="https://github.com/xukimseven/HardCandy-Jekyll">HardCandy-Jekyll</a></span>
+</footer>
+
+
+<!-- 引用wow.js的动画效果 -->
+<script src="/assets/js/wow.js"></script>
+<script>
+    var wow = new WOW({
+        boxClass: 'wow',
+        animateClass: 'animated',
+        // offset: 600,
+        mobile: true,
+        live: true
+    });
+    wow.init();
+</script>
+<!-- 页面刷新回到顶部 -->
+<script>
+    window.onbeforeunload = function(){
+        //刷新后页面自动回到顶部
+        document.documentElement.scrollTop = 0;  //ie下
+        document.body.scrollTop = 0;  //非ie
+    }
+</script>
+<script src="/assets/js/main.js"></script>
+</body>
+</html>
