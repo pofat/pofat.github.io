@@ -5,7 +5,7 @@ date: 2019-07-30
 author: Pofat
 color: rgb(60,219,192)
 cover: 'https://i.imgur.com/I2QGC8O.jpg'
-tags: Swift, struct
+tags: Swift struct
 ---
 
 最近和兩位志同道合的 iOS 發燒友（現在還有人用這詞嗎？）一起開辦了一個針對 iOS 開發者的中文 Podcast，第一集就榮幸地有大師來踢館，因為我們在節目裡提到 Swift 的 value types 都會在 stack 裡，大師 CJ 表示不對喔，若是 reference type 的 value property 或者被 closure 捕獲的 value type 都會在 heap 裡

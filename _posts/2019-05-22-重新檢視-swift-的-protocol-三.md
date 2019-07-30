@@ -5,7 +5,7 @@ date: 2019-05-22
 author: Pofat
 color: rgb(253,117,36)
 cover: 'https://i.imgur.com/rMFuHjT.jpg'
-tags: Swift, Protocol
+tags: Swift Protocol
 ---
 
 讓我們直接來到三部曲的終章，為了營造終局的高潮我塞了不少資訊在這篇文章裡，大家先喝點水伸展一下。
