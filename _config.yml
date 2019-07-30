@@ -28,7 +28,7 @@ SNS-icon:
   twitch: ''
 
 # pagination
-paginate: 2
+paginate: 10
 paginatepath: ['page:num']
 
 # since
