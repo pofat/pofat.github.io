@@ -142,7 +142,7 @@
   
 
   <!-- 文章内容 -->
-  <p>最近和兩位志同道合的 iOS 發燒友（現在還有人用這詞嗎？）一起開辦了一個針對 iOS 開發者的中文 Podcast，第一集就榮幸地有大師來踢館，因為我們在節目裡提到 Swift 的 value types 都會在 stack 裡，大師 CJ 表示不對喔，若是 reference type 的 value property 或者被 closure 捕獲的 value type 都會在 heap 裡</p>
+  <p>最近和兩位志同道合的 iOS 發燒友（現在還有人用這詞嗎？）一起開辦了一個針對 iOS 開發者的中文 Podcast，第一集就榮幸地有大師來踢館，因為我們在節目裡提到 Swift 的 value types 都會在 stack 裡，大師 CJ 表示不對喔，若是 reference type 的 value property 或者被 closure 捕獲的 value type 都會在 heap 裡！</p>
 
 <iframe src="https://giphy.com/embed/fdRLQ2ApeAYkaXqXML" width="480" height="480" style="display:block" frameborder="0" class="giphy-embed" allowfullscreen=""></iframe>
 
@@ -151,7 +151,7 @@
 <h2 id="指向-class-instance-的-header-pointer">指向 Class Instance 的 Header Pointer</h2>
 
 <p>以前看指標文章時有玩過直接取得位址後，可以對位址內容硬改值以改變本該無法被 mutate 的東西（比如 <code class="highlighter-rouge">let</code> ）
-所以我們先宣告一個 class ，建立一個 instance，我們知道這個 instance 實際上的內容會存在 heap 裡的一塊連續空間裡，然後我們搞一個指向它 instance 開頭的指標</p>
+所以我們先宣告一個 class ，建立一個 instance，我們知道這個 instance 實際上的內容會存在 heap 裡的一塊連續空間裡，然後我們搞一個指向它 instance 開頭的指標：</p>
 
 <figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="kt">Person</span> <span class="p">{</span>
   <span class="k">let</span> <span class="nv">name</span> <span class="o">=</span> <span class="s">"Pofat"</span>
@@ -163,7 +163,7 @@
 
 <span class="k">let</span> <span class="nv">headerPointer</span> <span class="o">=</span> <span class="kt">Unmanaged</span><span class="o">.</span><span class="nf">passUnretained</span><span class="p">(</span><span class="n">pofat</span> <span class="k">as</span> <span class="kt">AnyObject</span><span class="p">)</span><span class="o">.</span><span class="nf">toOpaque</span><span class="p">()</span> </code></pre></figure>
 
-<p>照理來說這個 instance 裡所有的 property 應該會依著宣告的順序依序擺在這個 <code class="highlighter-rouge">headerPointer</code> 指向的位址之後，不過 class 前面有兩個 byte 是用來放 descriptor 以及 retain count，所以 property 會從第三個 byte 開始，我們用 <code class="highlighter-rouge">MemoryLayout</code> 來取得各個 property 所佔的空間大小，依序找出 <code class="highlighter-rouge">name</code>, <code class="highlighter-rouge">age</code> 以及 <code class="highlighter-rouge">married</code> 的位址</p>
+<p>照理來說這個 instance 裡所有的 property 應該會依著宣告的順序依序擺在這個 <code class="highlighter-rouge">headerPointer</code> 指向的位址之後，不過 class 前面有兩個 byte 是用來放 descriptor 以及 retain count，所以 property 會從第三個 byte 開始，我們用 <code class="highlighter-rouge">MemoryLayout</code> 來取得各個 property 所佔的空間大小，依序找出 <code class="highlighter-rouge">name</code>, <code class="highlighter-rouge">age</code> 以及 <code class="highlighter-rouge">married</code> 的位址：</p>
 
 <figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">let</span> <span class="nv">nameOffset</span> <span class="o">=</span> <span class="mi">16</span>
 <span class="k">let</span> <span class="nv">ageOffset</span> <span class="o">=</span> <span class="n">nameOffset</span> <span class="o">+</span> <span class="kt">MemoryLayout</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;.</span><span class="n">stride</span>
@@ -174,8 +174,7 @@
 <span class="k">let</span> <span class="nv">agePointer</span> <span class="o">=</span> <span class="n">headerPointer</span><span class="o">.</span><span class="nf">advanced</span><span class="p">(</span><span class="nv">by</span><span class="p">:</span> <span class="n">ageOffset</span><span class="p">)</span><span class="o">.</span><span class="nf">assumingMemoryBound</span><span class="p">(</span><span class="nv">to</span><span class="p">:</span> <span class="kt">Int</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
 <span class="k">let</span> <span class="nv">marriedPointer</span> <span class="o">=</span> <span class="n">headerPointer</span><span class="o">.</span><span class="nf">advanced</span><span class="p">(</span><span class="nv">by</span><span class="p">:</span> <span class="n">marriedOffset</span><span class="p">)</span><span class="o">.</span><span class="nf">assumingMemoryBound</span><span class="p">(</span><span class="nv">to</span><span class="p">:</span> <span class="kt">Bool</span><span class="o">.</span><span class="k">self</span><span class="p">)</span></code></pre></figure>
 
-<p>這些位址當然還是在 heap 裡，而且應該指到就是這些 value type 的 property 所在地（吧）
-我們直接強行改變這些位置上的值實驗看看</p>
+<p>這些位址當然還是在 heap 裡，而且應該指到就是這些 value type 的 property 所在地（吧），我們直接強行改變這些位置上的值實驗看看:</p>
 
 <figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="n">namePointer</span><span class="o">.</span><span class="n">pointee</span> <span class="o">=</span> <span class="s">"Joe"</span>
 <span class="n">agePointer</span><span class="o">.</span><span class="n">pointee</span> <span class="o">=</span> <span class="mi">30</span>
@@ -186,14 +185,14 @@
 <span class="nf">print</span><span class="p">(</span><span class="n">pofat</span><span class="o">.</span><span class="n">married</span><span class="p">)</span>    <span class="c1">// get false</span></code></pre></figure>
 
 <p>OK，我們可以看到值如預料地變化了，這些 value type 真的是在 heap 裡啊！
-也用了 Colab 做了一個可以直接在線上 run code 的<a href="https://t.co/oiTZvLTKDB?amp=1">版本</a></p>
+也用了 Colab 做了一個可以直接在線上 run code 的<a href="https://t.co/oiTZvLTKDB?amp=1">版本</a>。</p>
 
 <h2 id="參考資料">參考資料</h2>
 
 <ol>
   <li>weak self 第一集：<a href="https://twitter.com/weak_self/status/1155511615661285376?s=21">Swift API 設計之 Value Type 與 Reference Type</a></li>
-  <li>酄迎訂閱13、喬喬和我共同製作的 Podcast ，這裡有<a href="https://t.co/dWSjXobT1l?amp=1">訂閱指南</a></li>
-  <li>CJ Lin 大大與他帶來的<a href="https://link.medium.com/v96sFdHDIY">文章</a></li>
+  <li>酄迎訂閱13、喬喬和我共同製作的 Podcast ，這裡有<a href="http://bit.ly/weak_self_podcast">訂閱指南</a></li>
+  <li>CJ Lin 大大不吝<a href="https://twitter.com/eJamesLin/status/1155857719863042053">指教</a> 與他推薦的<a href="https://link.medium.com/v96sFdHDIY">文章</a></li>
 </ol>
 
   <!-- 引入share模块 -->
