@@ -60,7 +60,7 @@ print(pofat.married)    // get false
 OK，我們可以看到值如預料地變化了，這些 value type 真的是在 heap 裡啊！
 也用了 Colab 做了一個可以直接在線上 run code 的[版本](https://t.co/oiTZvLTKDB?amp=1)
 
-參考資料：
+## 參考資料
 
 1. weak self 第一集：[Swift API 設計之 Value Type 與 Reference Type](https://twitter.com/weak_self/status/1155511615661285376?s=21)
 2. 酄迎訂閱13、喬喬和我共同製作的 Podcast ，這裡有[訂閱指南](https://t.co/dWSjXobT1l?amp=1)
