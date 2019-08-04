@@ -3,8 +3,8 @@ layout: post
 title: 'Opaque Result Type'
 date: 2019-08-05
 author: Pofat
-color: rgb(60,219,192)
-cover: 'https://i.imgur.com/I2QGC8O.jpg'
+color: rgb(206,206,206)
+cover: 'https://cdn.pixabay.com/photo/2016/03/09/15/26/ruler-1246653_1280.jpg'
 tags: Swift protocol SwiftUI
 ---
 

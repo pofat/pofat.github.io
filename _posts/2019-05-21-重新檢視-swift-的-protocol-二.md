@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '重新檢視 Swift 的 Protocol (二）'
+title: '重新檢視 Swift 的 Protocol（二）'
 date: 2019-05-21
 author: Pofat
 color: rgb(253,117,36)
