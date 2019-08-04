@@ -211,9 +211,12 @@ func example() {
 
 一口氣解開了 PAT 的問題，更打開了一個實體只能有一種 Protocol 實作的限制，根本神之思維啊啊！！！
 
-欲知詳情，請期待第三集
+欲知詳情，請前往[第三集](https://pofat.dev/2019/05/22/%E9%87%8D%E6%96%B0%E6%AA%A2%E8%A6%96-swift-%E7%9A%84-protocol-%E4%B8%89.html)
 
 ### 後記與參考資料：
 
 會開始動手寫這篇始於最近和友人 Liyao Chen 還有 Ethan Huang 直接間接地小聊、提供資料和我個人腦補，又看到 Rob Napier 哥重出江湖[講 protocol](http://robnapier.net/)（精彩勿錯過）以及 Brandon Willams 和對此議題的神之切入角度，就將這段歷程寫下來。
+
+### 後記其二 (2019.8.5) 
+這篇文寫完後不到一個月，在 WWDC 2019 就看到令人爆炸的 SwiftUI，其中的 `some View` 這種寫法尤是惹人側目，這就是 SE-0244 的實作，也該是時候好好了解一下它是什麼，所以再另起一文說明這個特性 - [Opaque Result Type](https://pofat.dev/2019/08/05/opaque-result-type.html)。
 
