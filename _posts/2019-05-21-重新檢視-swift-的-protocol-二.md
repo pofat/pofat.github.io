@@ -218,5 +218,5 @@ func example() {
 會開始動手寫這篇始於最近和友人 Liyao Chen 還有 Ethan Huang 直接間接地小聊、提供資料和我個人腦補，又看到 Rob Napier 哥重出江湖[講 protocol](http://robnapier.net/)（精彩勿錯過）以及 Brandon Willams 和對此議題的神之切入角度，就將這段歷程寫下來。
 
 ### 後記其二 (2019.8.5) 
-這篇文寫完後不到一個月，在 WWDC 2019 就看到令人爆炸的 SwiftUI，其中的 `some View` 這種寫法尤是惹人側目，這就是 SE-0244 的實作，也該是時候好好了解一下它是什麼，所以再另起一文說明這個特性 - [Opaque Result Type](https://pofat.dev/2019/08/05/opaque-result-type.html)。
+這篇文寫完後不到一個月，在 WWDC 2019 就看到令人爆炸的 SwiftUI，其中的 `some View` 這種寫法尤是惹人側目，這就是 SE-0244 的實作，也該是時候好好了解一下它是什麼，所以再另起一文說明這個特性 - [Opaque Result Type](https://pofat.dev/2019/08/05/Opaque-Result-Type.html)。
 
