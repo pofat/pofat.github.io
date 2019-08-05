@@ -158,23 +158,23 @@
 <span class="kd">struct</span> <span class="kt">Rectangle</span><span class="p">:</span> <span class="kt">Shape</span> <span class="p">{}</span>
 
 <span class="kd">struct</span> <span class="kt">Union</span><span class="o">&lt;</span><span class="kt">A</span><span class="p">:</span> <span class="kt">Shape</span><span class="p">,</span> <span class="kt">B</span><span class="p">:</span> <span class="kt">Shape</span><span class="o">&gt;</span><span class="p">:</span> <span class="kt">Shape</span> <span class="p">{</span>
-  <span class="k">var</span> <span class="nv">a</span><span class="p">:</span> <span class="kt">Shape</span>
-  <span class="k">var</span> <span class="nv">b</span><span class="p">:</span> <span class="kt">Shape</span>
+    <span class="k">var</span> <span class="nv">a</span><span class="p">:</span> <span class="kt">Shape</span>
+    <span class="k">var</span> <span class="nv">b</span><span class="p">:</span> <span class="kt">Shape</span>
 <span class="p">}</span>
 
 <span class="kd">struct</span> <span class="kt">Transformed</span><span class="o">&lt;</span><span class="kt">S</span><span class="p">:</span> <span class="kt">Shape</span><span class="o">&gt;</span><span class="p">:</span> <span class="kt">Shape</span> <span class="p">{</span>
-  <span class="k">var</span> <span class="nv">shape</span><span class="p">:</span> <span class="kt">S</span>
+    <span class="k">var</span> <span class="nv">shape</span><span class="p">:</span> <span class="kt">S</span>
 <span class="p">}</span>
 
 <span class="kd">protocol</span> <span class="kt">GameObject</span> <span class="p">{</span>
-  <span class="kd">associatedtype</span> <span class="kt">ShapeType</span><span class="p">:</span> <span class="kt">Shape</span>
-  <span class="k">var</span> <span class="nv">shape</span><span class="p">:</span> <span class="kt">ShapeType</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span>
+    <span class="kd">associatedtype</span> <span class="kt">ShapeType</span><span class="p">:</span> <span class="kt">Shape</span>
+    <span class="k">var</span> <span class="nv">shape</span><span class="p">:</span> <span class="kt">ShapeType</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="kd">struct</span> <span class="kt">EightPointedStar</span><span class="p">:</span> <span class="kt">GameObject</span> <span class="p">{</span>
-  <span class="k">var</span> <span class="nv">shape</span><span class="p">:</span> <span class="kt">Union</span><span class="o">&lt;</span><span class="kt">Rectangle</span><span class="p">,</span> <span class="kt">Transformed</span><span class="o">&lt;</span><span class="kt">Rectangle</span><span class="o">&gt;&gt;</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="kt">Union</span><span class="p">(</span><span class="nv">a</span><span class="p">:</span><span class="kt">Rectangle</span><span class="p">(),</span> <span class="nv">b</span><span class="p">:</span><span class="kt">Transformed</span><span class="p">(</span><span class="nv">shape</span><span class="p">:</span> <span class="kt">Rectangle</span><span class="p">()))</span>
-  <span class="p">}</span>
+    <span class="k">var</span> <span class="nv">shape</span><span class="p">:</span> <span class="kt">Union</span><span class="o">&lt;</span><span class="kt">Rectangle</span><span class="p">,</span> <span class="kt">Transformed</span><span class="o">&lt;</span><span class="kt">Rectangle</span><span class="o">&gt;&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kt">Union</span><span class="p">(</span><span class="nv">a</span><span class="p">:</span><span class="kt">Rectangle</span><span class="p">(),</span> <span class="nv">b</span><span class="p">:</span><span class="kt">Transformed</span><span class="p">(</span><span class="nv">shape</span><span class="p">:</span> <span class="kt">Rectangle</span><span class="p">()))</span>
+    <span class="p">}</span>
 <span class="p">}</span></code></pre></figure>
 
 <p>可見最後 <code class="highlighter-rouge">EightPointedStar.shape</code> 的定義是多麼地可怕，以上幾個問題其實都來自於一個原先 Swift 泛型系綂設計的不足，那就是:</p>
@@ -233,9 +233,9 @@
 <p>至於 PAT，我們就拿 SwiftUI 裡的 <code class="highlighter-rouge">some View</code> 來說明，基本上 <code class="highlighter-rouge">View</code> 是一個帶有 associated type 的 Protocol</p>
 
 <figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">View</span> <span class="p">{</span>
-  <span class="kd">associatedtype</span> <span class="kt">Body</span> <span class="p">:</span> <span class="kt">View</span>
+    <span class="kd">associatedtype</span> <span class="kt">Body</span> <span class="p">:</span> <span class="kt">View</span>
 
-  <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="k">Self</span><span class="o">.</span><span class="kt">Body</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span>
+    <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="k">Self</span><span class="o">.</span><span class="kt">Body</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span>
 <span class="p">}</span></code></pre></figure>
 
 <p>使用上是這樣的</p>
@@ -246,13 +246,13 @@
     <span class="p">}</span>
 <span class="p">}</span></code></pre></figure>
 
-<p>因此 SwiftUI 在呼叫 <code class="highlighter-rouge">body</code> 時無法跟我們以前的使用習慣一樣，它看到的是一個抽象的型別，所以要用遞迴的方式逐一檢查所有的 view 到底有哪些具體型別，這其中也有用 metadata 來幫忙解析這些資訊。</p>
+<p>如此一來實作 <code class="highlighter-rouge">View</code> Protocol 的 ContentView 可以自由地決定要生成什麼 view，再也不是靠外部決定了，也因此 SwiftUI 在 runtime 呼叫 <code class="highlighter-rouge">body</code> 時無法跟我們以前的使用習慣一樣，它看到的是一個抽象的型別，要用遞迴的方式逐一檢查所有的 view 到底有哪些具體型別，這其中也有用 <a href="https://forums.swift.org/t/dynamicviewproperty/25627/4">metadata</a> 來幫忙解析這些資訊。</p>
 
 <h2 id="限制與注意事項">限制與注意事項</h2>
 
-<ol>
+<ul>
   <li>最終的具體型別要在 compile time 能確定，比如你不能寫出</li>
-</ol>
+</ul>
 
 <figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">protocol</span> <span class="kt">P</span> <span class="p">{</span> <span class="p">}</span>
 <span class="kd">extension</span> <span class="kt">Int</span> <span class="p">:</span> <span class="kt">P</span> <span class="p">{</span> <span class="p">}</span>
@@ -266,9 +266,9 @@
     <span class="p">}</span>
 <span class="p">}</span></code></pre></figure>
 
-<ol>
+<ul>
   <li>最終還是會對應到一個具體的型別的，且具有單一性</li>
-</ol>
+</ul>
 
 <figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="n">foo</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Equatable</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="kt">T</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">some</span> <span class="kt">Equatable</span> <span class="p">{</span>
     <span class="k">let</span> <span class="nv">condition</span> <span class="o">=</span> <span class="n">x</span> <span class="o">==</span> <span class="n">y</span> <span class="c1">// 合法, 因為 x、y 是同一個泛型參數</span>
@@ -286,25 +286,25 @@
 <span class="k">var</span> <span class="nv">x</span> <span class="o">=</span> <span class="nf">makeOpaque</span><span class="p">(</span><span class="kt">Int</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="nf">makeOpaque</span><span class="p">(</span><span class="kt">Double</span><span class="o">.</span><span class="k">self</span><span class="p">)</span> <span class="c1">// compile error，因為 x 的型別應該是 Any&lt;Int&gt;</span></code></pre></figure>
 
-<ol>
+<ul>
   <li>不可包在 Optional 中，不可宣告在 protocol 中</li>
-</ol>
+</ul>
 
-<p>以下的寫法也都不行，compiler 會抱怨的</p>
+<p>以下的寫法也都不行，compiler 會抱怨的！</p>
 
 <figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">f</span><span class="p">(</span><span class="nv">flip</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">some</span> <span class="kt">P</span><span class="p">)?</span> <span class="p">{</span>
   <span class="c1">// ...</span>
 <span class="p">}</span>
 
 <span class="kd">protocol</span> <span class="kt">Q</span> <span class="p">{</span>
-  <span class="kd">func</span> <span class="nf">f</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">some</span> <span class="kt">P</span>
+    <span class="kd">func</span> <span class="nf">f</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">some</span> <span class="kt">P</span>
 <span class="p">}</span></code></pre></figure>
 
 <h2 id="參考資料">參考資料</h2>
 
-<ol>
+<ul>
   <li>weak self 第二集：<a href="https://twitter.com/weak_self/status/1158049319653560321">原來我不會用 protocol</a></li>
-</ol>
+</ul>
 
   <!-- 引入share模块 -->
   

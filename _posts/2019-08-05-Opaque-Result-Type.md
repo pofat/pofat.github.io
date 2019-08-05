@@ -23,23 +23,23 @@ protocol Shape {}
 struct Rectangle: Shape {}
 
 struct Union<A: Shape, B: Shape>: Shape {
-  var a: Shape
-  var b: Shape
+    var a: Shape
+    var b: Shape
 }
 
 struct Transformed<S: Shape>: Shape {
-  var shape: S
+    var shape: S
 }
 
 protocol GameObject {
-  associatedtype ShapeType: Shape
-  var shape: ShapeType { get }
+    associatedtype ShapeType: Shape
+    var shape: ShapeType { get }
 }
 
 struct EightPointedStar: GameObject {
-  var shape: Union<Rectangle, Transformed<Rectangle>> {
-    return Union(a:Rectangle(), b:Transformed(shape: Rectangle()))
-  }
+    var shape: Union<Rectangle, Transformed<Rectangle>> {
+        return Union(a:Rectangle(), b:Transformed(shape: Rectangle()))
+    }
 }
 {% endhighlight %}
 
@@ -102,9 +102,9 @@ struct EightPointedStar: GameObject {
 
 {% highlight Swift %}
 public protocol View {
-  associatedtype Body : View
+    associatedtype Body : View
 
-  var body: Self.Body { get }
+    var body: Self.Body { get }
 }
 {% endhighlight %}
 
@@ -118,11 +118,11 @@ struct ContentView: View {
 }
 {% endhighlight %}
 
-因此 SwiftUI 在呼叫 `body` 時無法跟我們以前的使用習慣一樣，它看到的是一個抽象的型別，所以要用遞迴的方式逐一檢查所有的 view 到底有哪些具體型別，這其中也有用 metadata 來幫忙解析這些資訊。
+如此一來實作 `View` Protocol 的 ContentView 可以自由地決定要生成什麼 view，再也不是靠外部決定了，也因此 SwiftUI 在 runtime 呼叫 `body` 時無法跟我們以前的使用習慣一樣，它看到的是一個抽象的型別，要用遞迴的方式逐一檢查所有的 view 到底有哪些具體型別，這其中也有用 [metadata](https://forums.swift.org/t/dynamicviewproperty/25627/4) 來幫忙解析這些資訊。
 
 ## 限制與注意事項
 
-1. 最終的具體型別要在 compile time 能確定，比如你不能寫出
+* 最終的具體型別要在 compile time 能確定，比如你不能寫出
 
 {% highlight Swift %}
 protocol P { }
@@ -138,7 +138,7 @@ func f1(condition: Bool) -> some P {
 }
 {% endhighlight %}
 
-2. 最終還是會對應到一個具體的型別的，且具有單一性
+* 最終還是會對應到一個具體的型別的，且具有單一性
 
 {% highlight Swift %}
 func foo<T: Equatable>(x: T, y: T) -> some Equatable {
@@ -160,9 +160,9 @@ var x = makeOpaque(Int.self)
 x = makeOpaque(Double.self) // compile error，因為 x 的型別應該是 Any<Int>
 {% endhighlight %}
 
-3. 不可包在 Optional 中，不可宣告在 protocol 中
+* 不可包在 Optional 中，不可宣告在 protocol 中
 
-以下的寫法也都不行，compiler 會抱怨的
+以下的寫法也都不行，compiler 會抱怨的！
 
 {% highlight Swift %}
 func f(flip: Bool) -> (some P)? {
@@ -170,11 +170,11 @@ func f(flip: Bool) -> (some P)? {
 }
 
 protocol Q {
-  func f() -> some P
+    func f() -> some P
 }
 {% endhighlight %}
 
 
 ## 參考資料
 
-1. weak self 第二集：[原來我不會用 protocol](https://twitter.com/weak_self/status/1158049319653560321)
+* weak self 第二集：[原來我不會用 protocol](https://twitter.com/weak_self/status/1158049319653560321)
