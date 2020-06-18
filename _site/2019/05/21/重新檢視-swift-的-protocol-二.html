@@ -341,7 +341,7 @@
 
 <p><br /></p>
 
-<p>好吧，收捨破碎的心， code 還是要寫完不然會沒工作，遇到這個狀況該怎麼辦呢？先講終極結論，這個問題應該就在不久後的將來就會被解決，Swift 總有一天會支援 let request: Request<ResponseObject: User=""> 的寫法（或者可能是 some Request，可以參考SE-0244）。但在那天到來前，Swift 社群有很多 workaround 的討論以繞開這個問題，type erasure 的技巧如 AnyIterator、Any XXX 等都可以，不過都還很麻煩而且一定要再引入另一個 container。直到最近我看到一個讓我🤯🤯🤯的天才想法：</ResponseObject:></p>
+<p>好吧，收捨破碎的心， code 還是要寫完不然會沒工作，遇到這個狀況該怎麼辦呢？先講終極結論，這個問題應該就在不久後的將來就會被解決，Swift 總有一天會支援 let request: Request&lt;ResponseObject: User&gt; 的寫法（或者可能是 some Request，可以參考SE-0244）。但在那天到來前，Swift 社群有很多 workaround 的討論以繞開這個問題，type erasure 的技巧如 AnyIterator、Any XXX 等都可以，不過都還很麻煩而且一定要再引入另一個 container。直到最近我看到一個讓我🤯🤯🤯的天才想法：</p>
 
 <blockquote>
   <p>Why don’t you write Protocol Witness Table by yourself？</p>
@@ -446,7 +446,10 @@
   <span>Pofat Develops ©
   
   
-  2019
+    2019
+    -
+  
+  2020
   <br>
   Powered by <a href="https://www.jekyll.com.cn/">Jekyll</a> | <a href="https://github.com/xukimseven/HardCandy-Jekyll">HardCandy-Jekyll</a></span>
 </footer>
