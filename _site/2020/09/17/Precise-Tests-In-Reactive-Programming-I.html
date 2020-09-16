@@ -1,0 +1,531 @@
+<!-- 博文的布局-Layout -->
+<!DOCTYPE html>
+<html>
+<head>
+<!-- 引入head标签 -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-sclable=0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="description" content="#0x8badf00d 🤮" />
+<meta name="keywords" content="iOS, Swift" />
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/media.css">
+<link rel="stylesheet" href="/assets/css/animate.min.css">
+<link rel="stylesheet" href="/assets/css/pygments/pygments_pastie.css">
+<link rel="stylesheet" href="/assets/css/github-markdown.css">
+<!-- SNS-icon -->
+<script src="//at.alicdn.com/t/font_856428_y9z6nq7zf5.js"></script>
+<!-- share.css -->
+<link rel="stylesheet" href="/assets/css/share.min.css">
+<!-- font -->
+<link rel="stylesheet" href="/assets/css/font.css">
+<!-- <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Pacifico|Ubuntu|Roboto+Mono|Source+Sans+Pro" rel="stylesheet"> -->
+
+<!-- Favicon -->
+<link href="/assets/profile.jpeg" rel="shortcut icon" />
+<link href="/assets/profile.jpeg" rel="apple-touch-icon-precomposed" />
+<!-- Android Lolipop Theme Color -->
+<!-- <meta name="theme-color" content="#1464FB"> -->
+<title>如何更精準地測試 Reactive Programming（一）</title>
+<!-- 百度统计 -->
+
+<!-- 谷歌分析 -->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141693863-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-141693863-1');
+</script>
+
+
+<!-- Android Lolipop Theme Color -->
+<meta name="theme-color" content=" rgb(214,12,142) ">
+</head>
+<body>
+
+<!-- 顶部锚点 -->
+<a id="htmlup" name="htmlup"></a>
+<!-- 引入博文顶部选项 -->
+
+<header id="post-header" style="background-color:rgb(214,12,142);">
+  <div class="top-center">
+      <div class="logo">
+          <a href="/" title="my awesome webtitle" style="color: white;">Pofat Develops</a>
+      </div>
+      <nav class="top-nav">
+          <ul>
+              
+                <li><a href="/" style="color: white;">Articles</a></li>
+              
+                <li><a href="/tags.html" style="color: white;">Tags</a></li>
+              
+                <li><a href="/timeline.html" style="color: white;">Timeline</a></li>
+              
+                <li><a href="/about.html" style="color: white;">About</a></li>
+              
+          </ul>
+      </nav>
+      <div id="top-boot">
+        <a href="javascript:;" id="boot1" style="display:block;" onclick="document.getElementById('boot-area').style.display='block';document.getElementById('boot1').style.display='none';document.getElementById('boot2').style.display='block';"><img src="/assets/boot_white.png" alt=""></a>
+        <a href="javascript:;" id="boot2" style="display: none;" onclick="document.getElementById('boot-area').style.display='none';document.getElementById('boot1').style.display='block';document.getElementById('boot2').style.display='none';"><img src="/assets/boot_white.png" alt=""></a>
+      </div>
+  </div>
+
+</header>
+
+
+<!-- 引入移动下拉选项 -->
+<div id="boot-area">
+    <ul>
+        
+          <a href="/"><li>Articles</li></a>
+        
+          <a href="/tags.html"><li>Tags</li></a>
+        
+          <a href="/timeline.html"><li>Timeline</li></a>
+        
+          <a href="/about.html"><li>About</li></a>
+        
+    </ul>
+</div>
+
+<!-- 引入博文顶部样式 -->
+<!-- 版本一 垃圾 -->
+<!-- <div class="wow fadeIn top" data-wow-duration="3.5s" >
+    <span class="wow fadeInUp" data-wow-delay="0.2s">如何更精準地測試 Reactive Programming（一）</span>
+    <span class="wow fadeInUp" data-wow-delay="0.4s"></span>
+    <span class="wow fadeInUp" data-wow-delay="0.4s"></span>
+    <span class="wow fadeInUp" data-wow-delay="0.6s">作者&nbsp;&nbsp;|&nbsp;&nbsp;Pofat</span>
+</div> -->
+
+<!-- 版本二 可切换页面 -->
+
+<div class="post-top" style="background-color:rgb(214,12,142);">
+  <!-- 页面宽度大于800px -->
+  <div class="left-area">
+    
+      <a href="javascript:;" class="btn bounceInLeft animated" onmouseover="showLeft();this.style.color='rgb(214,12,142)';" onmouseout="goneLeft();this.style.color='rgba(0,0,0,.2)';"><</a>
+      <div id="left-tab" style="display:none;"><span class="left-san"></span><span class="left-main" style="color:rgb(214,12,142);"><sapn class="main">到頂了</sapn></span></div>
+    
+  </div>
+  <div class="post-titlearea">
+    <span class="wow fadeInUp" data-wow-delay="0.2s">如何更精準地測試 Reactive Programming（一）</span>
+    <!-- <span class="wow fadeInUp" data-wow-delay="0.4s"></span> -->
+    <!-- <span class="wow fadeInUp" data-wow-delay="0.4s"></span> -->
+    <!-- <span class="wow fadeInUp" data-wow-delay="0.6s">作者&nbsp;&nbsp;|&nbsp;&nbsp;Pofat</span> -->
+  </div>
+  <div class="right-area">
+    
+      <a href="/2020/06/19/The-Best-Product-As-A-Game.html" class="btn bounceInRight self-animated" onmouseover="showRight();this.style.color='rgb(214,12,142)';" onmouseout="goneRight();this.style.color='rgba(0,0,0,.2)';">></a>
+      <div id="right-tab" style="display:none;"><span class="right-san"></span><span class="right-main" style="color:rgb(214,12,142);"><sapn class="main">前所未有的優秀遊戲作品 - 最後生還者</sapn></span></div>
+    
+  </div>
+
+  <!-- 页面宽度小于800px -->
+  <div class="post-changearea">
+    
+      <a href="javascript:;" class="leftchange" style="border-right: 1px solid rgb(214,12,142);border-bottom: 2px solid rgb(214,12,142);"><span><br>到頂了</span></a>
+    
+    
+      <a href="/2020/06/19/The-Best-Product-As-A-Game.html" class="rightchange" style="border-left: 1px solid rgb(214,12,142);border-bottom: 2px solid rgb(214,12,142);"><span>下一篇<br><br>前所未有的優秀遊戲作品 - 最後生還者</span></a>
+    
+  </div>
+</div>
+
+
+<div class="markdown-body fadeInUp animated">
+
+  
+
+  <!-- 文章内容 -->
+  <p>Functional Reactive Programming 顯然是這些年的開發模式顯學之一，尤其是 Apple 也推出了自己的方案 - <a href="https://developer.apple.com/documentation/combine">Combine</a>，由此可見其重要性。基本上 Reactive Programming 是將非同步的事件，加上時間這個維度，以變成一個面向資料串流的開發典範，而這個發射事件的主體，在不同的 FRP 框架各由不同角色擔當， ReactiveCocoa 是 Signal，RxSwift 是 Observable，Combine 就是 Publisher，今天的主角會是 RxSwift，不過 Combine 與它的概念幾乎都是相通的，物件間的對應關係也幾乎是 1:1， 所以同樣的概念也完全適用。</p>
+
+<p>Observable 的觀念一看 Rx 家族用來說明 Observable 的示意圖就能更容易地明白（<a href="http://reactivex.io/documentation/observable.html">圖片來源</a>）
+<img src="/Users/pofat/Library/Application Support/typora-user-images/image-20200916222940985.png" alt="image-20200916222940985" /></p>
+
+<p>由此可知 Observable 可視為用時間為 index 的 event collection ，若是 collection 那麼我們所熟的 high-order function ，這些從 FP 來的概念也可以套用在 Observbale 上，因此 map、flatMap等這些熟悉的伙伴們都出現了，這即是 FRP 裡 F 的部分。</p>
+
+<h2 id="測試時間有點難">測試時間有點難</h2>
+
+<p>那今天的主題是什麼呢？我們知道 Observable 發出來的都是非同步事件，所以在測試用了 Observbale 的程式碼時，如果牽扯到 thread 的切換，那你就得使用非同步的測試方式 （比如 <code class="highlighter-rouge">XCTWaiter</code>），一個適當的測試應該 Observable 裡的事件來源其實都是用 mock 來取代真正的非同步工作，所以一定很快，可惜你仍然需要為這種測試方式設一個等待的時間；更困難的問題是時間是複雜的，如果我們想要更精準地驗確一個工作前開始、中間以及結束時的狀態就會把測試變得很複雜。但別忘了利用 time 當 index 的 event collection 這個概念，若我們能實做的話是不是就能控制時間，測試也能做得更明確嚴謹！而 RxSwift 就提供了 RxTest 這個附加的框架來幫忙這件事，就一起理解一下這件事是怎麼辦到的。</p>
+
+<p>先看個例子，一個可以打 request 與有個 String 結果 Observable 的 ViewModel</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">struct</span> <span class="kt">Dependency</span> <span class="p">{</span>
+
+  <span class="k">let</span> <span class="nv">request</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Observable</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span>
+
+  <span class="k">let</span> <span class="nv">scheduler</span><span class="p">:</span> <span class="kt">SchedulerType</span>
+
+<span class="p">}</span>
+
+
+
+<span class="kd">class</span> <span class="kt">ViewModel</span> <span class="p">{</span>
+
+  <span class="kd">private</span> <span class="k">let</span> <span class="nv">dependency</span><span class="p">:</span> <span class="kt">Dependency</span>
+
+  <span class="k">let</span> <span class="nv">result</span><span class="p">:</span> <span class="kt">Observable</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span>
+
+  <span class="kd">private</span> <span class="k">let</span> <span class="nv">resultRelay</span> <span class="o">=</span> <span class="kt">PublishRelay</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">()</span>
+
+  <span class="kd">private</span> <span class="k">var</span> <span class="nv">bag</span> <span class="o">=</span> <span class="kt">DisposeBag</span><span class="p">()</span>
+
+   
+
+  <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">dependency</span><span class="p">:</span> <span class="kt">Dependency</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="err">​</span>    <span class="k">self</span><span class="o">.</span><span class="n">dependency</span> <span class="o">=</span> <span class="n">dependency</span>
+
+<span class="err">​</span>    <span class="n">result</span> <span class="o">=</span> <span class="n">resultRelay</span><span class="o">.</span><span class="nf">asObservable</span><span class="p">()</span>
+
+  <span class="p">}</span>
+
+
+
+  <span class="kd">func</span> <span class="nf">doRequest</span><span class="p">()</span> <span class="p">{</span>
+
+<span class="err">​</span>    <span class="n">dependency</span><span class="o">.</span><span class="nf">request</span><span class="p">()</span>
+
+<span class="err">​</span>      <span class="o">.</span><span class="nf">observeOn</span><span class="p">(</span><span class="n">dependency</span><span class="o">.</span><span class="n">scheduler</span><span class="p">)</span>
+
+<span class="err">​</span>      <span class="o">.</span><span class="nf">subscribe</span><span class="p">(</span><span class="nv">onNext</span><span class="p">:</span> <span class="p">{</span> <span class="p">[</span><span class="k">weak</span> <span class="k">self</span><span class="p">]</span> <span class="k">in</span> <span class="k">self</span><span class="p">?</span><span class="o">.</span><span class="n">resultRelay</span><span class="o">.</span><span class="nf">accept</span><span class="p">(</span><span class="nv">$0</span><span class="p">)</span> <span class="p">})</span>
+
+<span class="err">​</span>      <span class="o">.</span><span class="nf">disposed</span><span class="p">(</span><span class="nv">by</span><span class="p">:</span> <span class="n">bag</span><span class="p">)</span>
+
+  <span class="p">}</span>
+
+<span class="p">}</span></code></pre></figure>
+
+<p>然後一般利用 waiter 的非同步測試會像：</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">extension</span> <span class="kt">Dependency</span> <span class="p">{</span>
+
+  <span class="kd">static</span> <span class="k">let</span> <span class="nv">mock</span> <span class="o">=</span> <span class="kt">Dependency</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="p">{</span>
+
+<span class="err">​</span>    <span class="k">return</span> <span class="kt">Observable</span><span class="o">.</span><span class="nf">just</span><span class="p">(</span><span class="s">"mock"</span><span class="p">)</span>
+
+  <span class="p">},</span> <span class="nv">scheduler</span><span class="p">:</span> <span class="kt">ConcurrentDispatchQueueScheduler</span><span class="p">(</span><span class="nv">qos</span><span class="p">:</span> <span class="o">.</span><span class="n">background</span><span class="p">))</span>
+
+<span class="p">}</span>
+
+
+
+<span class="kd">func</span> <span class="nf">testMockedRequest</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="k">var</span> <span class="nv">results</span> <span class="o">=</span> <span class="p">[</span><span class="kt">String</span><span class="p">]()</span>
+
+  <span class="k">let</span> <span class="nv">vm</span> <span class="o">=</span> <span class="kt">ViewModel</span><span class="p">(</span><span class="o">.</span><span class="n">mock</span><span class="p">)</span>
+
+  <span class="n">vm</span><span class="o">.</span><span class="n">result</span>
+
+<span class="err">​</span>    <span class="o">.</span><span class="nf">observeOn</span><span class="p">(</span><span class="kt">ConcurrentDispatchQueueScheduler</span><span class="p">(</span><span class="nv">qos</span><span class="p">:</span> <span class="o">.</span><span class="n">background</span><span class="p">))</span>
+
+<span class="err">​</span>    <span class="o">.</span><span class="nf">subscribe</span><span class="p">(</span><span class="nv">onNext</span><span class="p">:</span> <span class="p">{</span> <span class="n">results</span><span class="o">.</span><span class="nf">append</span><span class="p">(</span><span class="nv">$0</span><span class="p">)</span> <span class="p">})</span>
+
+<span class="err">​</span>    <span class="o">.</span><span class="nf">disposed</span><span class="p">(</span><span class="nv">by</span><span class="p">:</span> <span class="n">bag</span><span class="p">)</span>
+
+   
+
+  <span class="n">vm</span><span class="o">.</span><span class="nf">doRequest</span><span class="p">()</span>
+
+  <span class="n">_</span> <span class="o">=</span> <span class="kt">XCTWaiter</span><span class="o">.</span><span class="nf">wait</span><span class="p">(</span><span class="nv">for</span><span class="p">:</span> <span class="p">[</span><span class="kt">XCTestExpectation</span><span class="p">()],</span> <span class="nv">timeout</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">)</span>
+
+  <span class="kt">XCTAssertEqual</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="p">[</span><span class="s">"mock"</span><span class="p">])</span>
+
+<span class="p">}</span></code></pre></figure>
+
+<h2 id="把非同步變成同步">把非同步變成同步</h2>
+
+<p>那接下來要怎麼控制時間呢？第一件事要把這些非同步的動作都變成同步的，我們才有可能控制它，變成一個以 time 為 index 的 event collection。要做到這件事需要先了解 RxSwift 裡的 <code class="highlighter-rouge">SchedulerType</code> 幹啥用的 （在 Combine 就是 <code class="highlighter-rouge">Scheduler</code>）？ <code class="highlighter-rouge">SchdulerType</code> 繼承自 <code class="highlighter-rouge">ImmediateSchedulerType</code>，共有一個 property <code class="highlighter-rouge">var now : RxTime { get }</code> 和三個 method ，分別是三種 schedule：立刻馬上做，延後一段時間再做與週期性地做，其實 scheduler 的功能就是要有個 now 做為時間軸起點的參考點，然後不同時間點對不同的事情做排程在不同的 thread 上。具體地來說 RxSwift 有  <code class="highlighter-rouge">MainScheduler</code> (main thread)，<code class="highlighter-rouge">DispatchQueueScheduler</code> （包裝 GCD）以及<code class="highlighter-rouge"> OperationQueueScheduler</code> （包裝 OperationQueue）； 在 Combine 中，<code class="highlighter-rouge">DispatchQueue</code>，<code class="highlighter-rouge">OperationQueue</code>與 <code class="highlighter-rouge">RunLoop</code> 本身都遵循 <code class="highlighter-rouge">Scheduler</code> 了，更為靠近原本的用法習慣。</p>
+
+<p>本文先只看第一種立刻馬上要做的 <code class="highlighter-rouge">func schedule&lt;StateType&gt;(_ state: StateType, action: @escaping (StateType) -&gt; Disposable) -&gt; Disposable</code>，這件事在以往的 callback 做法就會是</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="n">myQueue</span><span class="o">.</span><span class="n">async</span> <span class="p">{</span>
+
+<span class="err">​</span>    <span class="nf">doSomething</span><span class="p">()</span>
+
+<span class="p">}</span></code></pre></figure>
+
+<p>而現在我們的目標是要能操控事件的發生時間，對於馬上要做的事件時間狀態只有做與不做兩種，所以解法就是放個 array 儲存要排程的工作，然後有個 method 可以觸放所有儲存起來，準備要發生的工作（注意以下先略過了其它兩種 schedule）</p>
+
+<p>首先我們需要一個「包裝工作的容器」，而且它必須是個 Disposable ，因為你可以發現 schedule method 是回一個 Disposable</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">final</span> <span class="kd">class</span> <span class="kt">VirtualSchedulerItem</span><span class="p">:</span> <span class="kt">Disposable</span> <span class="p">{</span>
+
+  <span class="c1">// 真正的非同步工作在此</span>
+
+  <span class="kd">typealias</span> <span class="kt">Action</span> <span class="o">=</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Disposable</span>
+
+
+
+  <span class="k">let</span> <span class="nv">action</span><span class="p">:</span> <span class="kt">Action</span>
+
+  <span class="k">var</span> <span class="nv">disposable</span> <span class="o">=</span> <span class="kt">SingleAssignmentDisposable</span><span class="p">()</span>
+
+  <span class="k">var</span> <span class="nv">isDisposed</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span>
+
+<span class="err">​</span>    <span class="k">return</span> <span class="n">disposable</span><span class="o">.</span><span class="n">isDisposed</span>
+
+  <span class="p">}</span>
+
+
+
+  <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">action</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">Action</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="err">​</span>    <span class="k">self</span><span class="o">.</span><span class="n">action</span> <span class="o">=</span> <span class="n">action</span>
+
+  <span class="p">}</span>
+
+  <span class="c1">// 真正執行工作的觸發點</span>
+
+  <span class="kd">func</span> <span class="nf">invoke</span><span class="p">()</span> <span class="p">{</span>
+
+<span class="err">​</span>    <span class="n">disposable</span><span class="o">.</span><span class="nf">setDisposable</span><span class="p">(</span><span class="nf">action</span><span class="p">())</span>
+
+  <span class="p">}</span>
+
+
+
+  <span class="kd">func</span> <span class="nf">dispose</span><span class="p">()</span> <span class="p">{</span>
+
+<span class="err">​</span>    <span class="n">disposable</span><span class="o">.</span><span class="nf">dispose</span><span class="p">()</span>
+
+  <span class="p">}</span>
+
+<span class="p">}</span></code></pre></figure>
+
+<p>接下來要來做一個自己的 Scheduler：</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="kt">MyTestScheudler</span><span class="p">:</span> <span class="kt">SchedulerType</span> <span class="p">{</span>
+
+  <span class="kd">private</span> <span class="k">var</span> <span class="nv">scheduleds</span><span class="p">:</span> <span class="p">[</span><span class="kt">VirtualSchedulerItem</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+  <span class="c1">// RxTime 其實是 Date 的 typealias</span>
+
+  <span class="k">var</span> <span class="nv">now</span><span class="p">:</span> <span class="kt">RxTime</span>
+
+
+
+  <span class="nf">init</span><span class="p">(</span><span class="nv">now</span><span class="p">:</span> <span class="kt">RxTime</span> <span class="o">=</span> <span class="kt">RxTime</span><span class="p">())</span> <span class="p">{</span>
+
+<span class="err">​</span>    <span class="k">self</span><span class="o">.</span><span class="n">now</span> <span class="o">=</span> <span class="n">now</span>
+
+  <span class="p">}</span>
+
+
+
+  <span class="kd">func</span> <span class="n">schedule</span><span class="o">&lt;</span><span class="kt">StateType</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">state</span><span class="p">:</span> <span class="kt">StateType</span><span class="p">,</span> <span class="nv">action</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">StateType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Disposable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Disposable</span> <span class="p">{</span>
+
+<span class="err">​</span>    <span class="k">let</span> <span class="nv">compositeDisposable</span> <span class="o">=</span> <span class="kt">CompositeDisposable</span><span class="p">()</span>
+
+<span class="err">​</span>    <span class="c1">// 把工作包在 scheduler item 裡</span>
+
+<span class="err">​</span>    <span class="k">let</span> <span class="nv">item</span> <span class="o">=</span> <span class="kt">VirtualSchedulerItem</span> <span class="p">{</span>
+
+<span class="err">​</span>      <span class="k">return</span> <span class="nf">action</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+
+<span class="err">​</span>    <span class="p">}</span>
+
+<span class="err">​</span>    
+
+<span class="err">​</span>    <span class="n">scheduleds</span><span class="o">.</span><span class="nf">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+<span class="err">​</span>    <span class="n">_</span> <span class="o">=</span> <span class="n">compositeDisposable</span><span class="o">.</span><span class="nf">insert</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+<span class="err">​</span>    <span class="k">return</span> <span class="n">compositeDisposable</span>
+
+  <span class="p">}</span>
+
+  <span class="c1">// 真正執行所有 scheduled task </span>
+
+  <span class="kd">func</span> <span class="nf">start</span><span class="p">()</span> <span class="p">{</span>
+
+<span class="err">​</span>    <span class="c1">// 這裡就把所有工作都變成同步了</span>
+
+<span class="err">​</span>    <span class="k">for</span> <span class="n">item</span> <span class="k">in</span> <span class="n">scheduleds</span> <span class="p">{</span>
+
+<span class="err">​</span>      <span class="n">item</span><span class="o">.</span><span class="nf">invoke</span><span class="p">()</span>
+
+<span class="err">​</span>    <span class="p">}</span>
+
+<span class="err">​</span>    <span class="n">scheduleds</span><span class="o">.</span><span class="nf">removeAll</span><span class="p">()</span> <span class="c1">// 做完就可以移除了</span>
+
+  <span class="p">}</span>
+
+<span class="p">}</span></code></pre></figure>
+
+<p>修改我們的 test：</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">let</span> <span class="nv">testScheduler</span> <span class="o">=</span> <span class="kt">MyTestScheudler</span><span class="p">()</span>
+
+<span class="kd">extension</span> <span class="kt">Dependency</span> <span class="p">{</span>
+
+  <span class="kd">static</span> <span class="k">let</span> <span class="nv">test</span> <span class="o">=</span> <span class="kt">Dependency</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="p">{</span>
+
+<span class="err">​</span>    <span class="k">return</span> <span class="kt">Observable</span><span class="o">.</span><span class="nf">just</span><span class="p">(</span><span class="s">"mock"</span><span class="p">)</span>
+
+  <span class="p">},</span> <span class="nv">scheduler</span><span class="p">:</span> <span class="n">testScheduler</span><span class="p">)</span>
+
+<span class="p">}</span>
+
+
+
+<span class="kd">func</span> <span class="nf">testMockedRequest</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="k">var</span> <span class="nv">results</span> <span class="o">=</span> <span class="p">[</span><span class="kt">String</span><span class="p">]()</span>
+
+  <span class="k">let</span> <span class="nv">vm</span> <span class="o">=</span> <span class="kt">ViewModel</span><span class="p">(</span><span class="o">.</span><span class="n">test</span><span class="p">)</span>
+
+  <span class="n">vm</span><span class="o">.</span><span class="n">result</span>
+
+<span class="err">​</span>    <span class="o">.</span><span class="nf">observeOn</span><span class="p">(</span><span class="n">testScheduler</span><span class="p">)</span>
+
+<span class="err">​</span>    <span class="o">.</span><span class="nf">subscribe</span><span class="p">(</span><span class="nv">onNext</span><span class="p">:</span> <span class="p">{</span>
+
+<span class="err">​</span>          <span class="n">results</span><span class="o">.</span><span class="nf">append</span><span class="p">(</span><span class="nv">$0</span><span class="p">)</span>
+
+<span class="err">​</span>       
+
+<span class="err">​</span>    <span class="p">})</span>
+
+<span class="err">​</span>    <span class="o">.</span><span class="nf">disposed</span><span class="p">(</span><span class="nv">by</span><span class="p">:</span> <span class="n">bag</span><span class="p">)</span>
+
+  <span class="c1">// 以下才有變化</span>
+
+  <span class="n">vm</span><span class="o">.</span><span class="nf">doRequest</span><span class="p">()</span>
+
+  <span class="kt">XCTAssertEqual</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="p">[])</span> <span class="c1">// we can test the beginning</span>
+
+  <span class="n">testScheduler</span><span class="o">.</span><span class="nf">start</span><span class="p">()</span>
+
+  <span class="kt">XCTAssertEqual</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="p">[</span><span class="s">"mock"</span><span class="p">])</span>
+
+<span class="p">}</span></code></pre></figure>
+
+<p>跑一下測試秒過，雖然是個簡單的例子，但不用等 expectation 就是爽啦！下集將介紹如果事情沒有要馬上發生的情況，以及若希望事件觸發也能指定發生在時間軸上的某一個點該如何進行。</p>
+
+
+  <!-- 引入share模块 -->
+  
+  <div class="social-share-wrapper">
+    <div class="social-share"></div>
+  </div>
+
+
+<!-- share.js -->
+<script src="/assets/js/social-share.min.js"></script>
+<script>
+  socialShare('.social-share', {
+    sites: [
+      
+        'twitter'
+        ,
+        
+      
+        'facebook'
+        ,
+        
+      
+        'linkedin'
+        
+      
+    ],
+    wechatQrcodeTitle: "分享到微信朋友圈",
+    wechatQrcodeHelper: '期待在朋友圈见到这篇文章'
+  });
+</script>
+
+</div>
+
+<!-- 底部锚点 -->
+<a id="htmldown" name="htmldown"></a>
+<!-- 引入评论模块 -->
+
+    <section class="post-footer-item comment">
+      <div id="disqus_thread"></div>
+    </section>
+
+    <script>
+      /**
+       *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+       *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+          s = d.createElement('script');
+        /*写入自己的disqus信息*/
+        s.src = 'https://pofat-dev.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+
+    </script>
+
+
+
+
+
+
+
+<!-- 引入goto模块 -->
+<div class="bounceInRight animated go">
+  <a title="到最上面切換不同文章" class="gototop" href="#htmlup" target="_self">
+    <div class="box" style="font-family:'Arial';">
+        Top
+    </div>
+  </a>
+  <a title="底部有disqus評論" class="gotobottom" href="#htmldown" target="_self">
+    <div class="box" style="font-family:'Arial';">
+        Foot
+    </div>
+  </a>
+</div>
+
+<!-- 引入页面底部模块 -->
+<footer id="bottom">
+  <br>
+  <span>Pofat Develops ©
+  
+  
+    2019
+    -
+  
+  2020
+  <br>
+  Powered by <a href="https://www.jekyll.com.cn/">Jekyll</a> | <a href="https://github.com/xukimseven/HardCandy-Jekyll">HardCandy-Jekyll</a></span>
+</footer>
+
+
+<!-- 引用wow.js的动画效果 -->
+<script src="/assets/js/wow.js"></script>
+<script>
+    var wow = new WOW({
+        boxClass: 'wow',
+        animateClass: 'animated',
+        // offset: 600,
+        mobile: true,
+        live: true
+    });
+    wow.init();
+</script>
+<!-- 页面刷新回到顶部 -->
+<script>
+    window.onbeforeunload = function(){
+        //刷新后页面自动回到顶部
+        document.documentElement.scrollTop = 0;  //ie下
+        document.body.scrollTop = 0;  //非ie
+    }
+</script>
+<script src="/assets/js/main.js"></script>
+</body>
+</html>
