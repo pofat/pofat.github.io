@@ -145,7 +145,7 @@
   <p>Functional Reactive Programming 顯然是這些年的開發模式顯學之一，尤其是 Apple 也推出了自己的方案 - <a href="https://developer.apple.com/documentation/combine">Combine</a>，由此可見其重要性。基本上 Reactive Programming 是將非同步的事件，加上時間這個維度，以變成一個面向資料串流的開發典範，而這個發射事件的主體，在不同的 FRP 框架各由不同角色擔當， ReactiveCocoa 是 Signal，RxSwift 是 Observable，Combine 就是 Publisher，今天的主角會是 RxSwift，不過 Combine 與它的概念幾乎都是相通的，物件間的對應關係也幾乎是 1:1， 所以同樣的概念也完全適用。</p>
 
 <p>Observable 的觀念一看 Rx 家族用來說明 Observable 的示意圖就能更容易地明白（<a href="http://reactivex.io/documentation/observable.html">圖片來源</a>）
-<img src="/Users/pofat/Library/Application Support/typora-user-images/image-20200916222940985.png" alt="image-20200916222940985" /></p>
+<img src="https://i.imgur.com/LJDykO8.png" alt="observable" /></p>
 
 <p>由此可知 Observable 可視為用時間為 index 的 event collection ，若是 collection 那麼我們所熟的 high-order function ，這些從 FP 來的概念也可以套用在 Observbale 上，因此 map、flatMap等這些熟悉的伙伴們都出現了，這即是 FRP 裡 F 的部分。</p>
 
@@ -241,7 +241,7 @@
 
 <h2 id="把非同步變成同步">把非同步變成同步</h2>
 
-<p>那接下來要怎麼控制時間呢？第一件事要把這些非同步的動作都變成同步的，我們才有可能控制它，變成一個以 time 為 index 的 event collection。要做到這件事需要先了解 RxSwift 裡的 <code class="highlighter-rouge">SchedulerType</code> 幹啥用的 （在 Combine 就是 <code class="highlighter-rouge">Scheduler</code>）？ <code class="highlighter-rouge">SchdulerType</code> 繼承自 <code class="highlighter-rouge">ImmediateSchedulerType</code>，共有一個 property <code class="highlighter-rouge">var now : RxTime { get }</code> 和三個 method ，分別是三種 schedule：立刻馬上做，延後一段時間再做與週期性地做，其實 scheduler 的功能就是要有個 now 做為時間軸起點的參考點，然後不同時間點對不同的事情做排程在不同的 thread 上。具體地來說 RxSwift 有  <code class="highlighter-rouge">MainScheduler</code> (main thread)，<code class="highlighter-rouge">DispatchQueueScheduler</code> （包裝 GCD）以及<code class="highlighter-rouge"> OperationQueueScheduler</code> （包裝 OperationQueue）； 在 Combine 中，<code class="highlighter-rouge">DispatchQueue</code>，<code class="highlighter-rouge">OperationQueue</code>與 <code class="highlighter-rouge">RunLoop</code> 本身都遵循 <code class="highlighter-rouge">Scheduler</code> 了，更為靠近原本的用法習慣。</p>
+<p>那接下來要怎麼控制時間呢？第一件事要把這些非同步的動作都變成同步的，我們才有可能控制它，變成一個以 time 為 index 的 event collection。要做到這件事需要先了解 RxSwift 裡的 <code class="highlighter-rouge">SchedulerType</code> 幹啥用的 （在 Combine 就是 <code class="highlighter-rouge">Scheduler</code>）？ <code class="highlighter-rouge">SchedulerType</code> 繼承自 <code class="highlighter-rouge">ImmediateSchedulerType</code>，共有一個 property <code class="highlighter-rouge">var now : RxTime { get }</code> 和三個 method ，分別是三種 schedule：立刻馬上做，延後一段時間再做與週期性地做，其實 scheduler 的功能就是要有個 now 做為時間軸起點的參考點，然後不同時間點對不同的事情做排程在不同的 thread 上。具體地來說 RxSwift 有  <code class="highlighter-rouge">MainScheduler</code> (main thread)，<code class="highlighter-rouge">DispatchQueueScheduler</code> （包裝 GCD）以及<code class="highlighter-rouge"> OperationQueueScheduler</code> （包裝 OperationQueue）； 在 Combine 中，<code class="highlighter-rouge">DispatchQueue</code>，<code class="highlighter-rouge">OperationQueue</code>與 <code class="highlighter-rouge">RunLoop</code> 本身都遵循 <code class="highlighter-rouge">Scheduler</code> 了，更為靠近原本的用法習慣。</p>
 
 <p>本文先只看第一種立刻馬上要做的 <code class="highlighter-rouge">func schedule&lt;StateType&gt;(_ state: StateType, action: @escaping (StateType) -&gt; Disposable) -&gt; Disposable</code>，這件事在以往的 callback 做法就會是</p>
 

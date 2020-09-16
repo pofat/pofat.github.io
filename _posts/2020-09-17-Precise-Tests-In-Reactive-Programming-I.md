@@ -121,7 +121,7 @@ func testMockedRequest() {
 
 ## 把非同步變成同步
 
-那接下來要怎麼控制時間呢？第一件事要把這些非同步的動作都變成同步的，我們才有可能控制它，變成一個以 time 為 index 的 event collection。要做到這件事需要先了解 RxSwift 裡的 `SchedulerType` 幹啥用的 （在 Combine 就是 `Scheduler`）？ `SchdulerType` 繼承自 `ImmediateSchedulerType`，共有一個 property `var now : RxTime { get }` 和三個 method ，分別是三種 schedule：立刻馬上做，延後一段時間再做與週期性地做，其實 scheduler 的功能就是要有個 now 做為時間軸起點的參考點，然後不同時間點對不同的事情做排程在不同的 thread 上。具體地來說 RxSwift 有  `MainScheduler` (main thread)，`DispatchQueueScheduler` （包裝 GCD）以及` OperationQueueScheduler` （包裝 OperationQueue）； 在 Combine 中，`DispatchQueue`，`OperationQueue`與 `RunLoop` 本身都遵循 `Scheduler` 了，更為靠近原本的用法習慣。
+那接下來要怎麼控制時間呢？第一件事要把這些非同步的動作都變成同步的，我們才有可能控制它，變成一個以 time 為 index 的 event collection。要做到這件事需要先了解 RxSwift 裡的 `SchedulerType` 幹啥用的 （在 Combine 就是 `Scheduler`）？ `SchedulerType` 繼承自 `ImmediateSchedulerType`，共有一個 property `var now : RxTime { get }` 和三個 method ，分別是三種 schedule：立刻馬上做，延後一段時間再做與週期性地做，其實 scheduler 的功能就是要有個 now 做為時間軸起點的參考點，然後不同時間點對不同的事情做排程在不同的 thread 上。具體地來說 RxSwift 有  `MainScheduler` (main thread)，`DispatchQueueScheduler` （包裝 GCD）以及` OperationQueueScheduler` （包裝 OperationQueue）； 在 Combine 中，`DispatchQueue`，`OperationQueue`與 `RunLoop` 本身都遵循 `Scheduler` 了，更為靠近原本的用法習慣。
 
 
 
