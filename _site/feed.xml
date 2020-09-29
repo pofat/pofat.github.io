@@ -1,4 +1,57 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-09-17T01:04:56+08:00</updated><id>http://localhost:4000/</id><title type="html">Pofat Develops</title><subtitle>#0x8badf00d 🤮</subtitle><author><name>true</name></author><entry><title type="html">如何更精準地測試 Reactive Programming（一）</title><link href="http://localhost:4000/2020/09/17/Precise-Tests-In-Reactive-Programming-I.html" rel="alternate" type="text/html" title="如何更精準地測試 Reactive Programming（一）" /><published>2020-09-17T00:00:00+08:00</published><updated>2020-09-17T00:00:00+08:00</updated><id>http://localhost:4000/2020/09/17/Precise-Tests-In-Reactive-Programming-I</id><content type="html" xml:base="http://localhost:4000/2020/09/17/Precise-Tests-In-Reactive-Programming-I.html">&lt;p&gt;Functional Reactive Programming 顯然是這些年的開發模式顯學之一，尤其是 Apple 也推出了自己的方案 - &lt;a href=&quot;https://developer.apple.com/documentation/combine&quot;&gt;Combine&lt;/a&gt;，由此可見其重要性。基本上 Reactive Programming 是將非同步的事件，加上時間這個維度，以變成一個面向資料串流的開發典範，而這個發射事件的主體，在不同的 FRP 框架各由不同角色擔當， ReactiveCocoa 是 Signal，RxSwift 是 Observable，Combine 就是 Publisher，今天的主角會是 RxSwift，不過 Combine 與它的概念幾乎都是相通的，物件間的對應關係也幾乎是 1:1， 所以同樣的概念也完全適用。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-09-29T15:54:07+08:00</updated><id>http://localhost:4000/</id><title type="html">Pofat Develops</title><subtitle>#0x8badf00d 🤮</subtitle><author><name>true</name></author><entry><title type="html">波肥的軟工相談室 @ iPlayground</title><link href="http://localhost:4000/2020/09/29/pofats-chat-room-iplayground.html" rel="alternate" type="text/html" title="波肥的軟工相談室 @ iPlayground" /><published>2020-09-29T00:00:00+08:00</published><updated>2020-09-29T00:00:00+08:00</updated><id>http://localhost:4000/2020/09/29/pofats-chat-room-iplayground</id><content type="html" xml:base="http://localhost:4000/2020/09/29/pofats-chat-room-iplayground.html">&lt;h1 id=&quot;pofat-的軟工相談室&quot;&gt;Pofat 的軟工相談室&lt;/h1&gt;
+
+&lt;p&gt;大家好，小弟是開發傷害累積很深的 iOS 清道夫工程師，念在一路走來接了不少炮彈、隕石，故在 iPlayground 2020 重磅推出個人相談室服務，望大家在未來的工程師之道上能少點傷害，走得舒服些，也有機會和大家交流蕉流。&lt;/p&gt;
+
+&lt;p&gt;如果你在團隊、公司或個人開發中有以下幾類的困惑或疑問，歡迎填表單預約，讓 Pofat 我為你想想辧法！&lt;/p&gt;
+
+&lt;h2 id=&quot;a-程式架構與效能類問題&quot;&gt;A. 程式架構與效能類問題&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;是否感覺面對的專案都在疊床架屋，每日開發如履薄冰，想處理卻不知從何下手？&lt;/li&gt;
+  &lt;li&gt;面對大規模的重構，不知怎麼開始，以及開始後如何盡量別把專案搞爆。&lt;/li&gt;
+  &lt;li&gt;想要開始寫測試，但是怎麼看好像都測不動啊…&lt;/li&gt;
+  &lt;li&gt;是否有難以解決的效能問題，或是如何確保效能在開發迭代中不逐漸失去控制？&lt;/li&gt;
+  &lt;li&gt;基本上如果你對下圖有既視感，歡迎來取暖 QAQ
+&lt;img src=&quot;https://i.imgur.com/ayVC4Mn.png&quot; alt=&quot;legacy code&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;p.s. 請為企業工作的大家屆時務必注意是否有不適當地揭露公司智慧財產權與營業祕密的情況。&lt;/p&gt;
+
+&lt;h2 id=&quot;b-開發技術與自我成長&quot;&gt;B. 開發技術與自我成長&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;是否為了成為資深 iOS 工程師而想累積傷害值（無誤），卻不知道該往哪些面向學習與研究？&lt;/li&gt;
+  &lt;li&gt;開發上是否遇到了開發問題很久沒能解決？&lt;/li&gt;
+  &lt;li&gt;面試時不清楚如何給面試官留下印象以及如何展現自己？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;c-團隊合作與工作流程&quot;&gt;C. 團隊合作與工作流程&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;是否想引入 code review 卻又不清楚到底該 review 什麼？&lt;/li&gt;
+  &lt;li&gt;把 code 送給 reviewer 前自己又該有什麼自覺？&lt;/li&gt;
+  &lt;li&gt;如何改善或確保工作流程能夠確保或提昇團隊產出的正確性？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;what-to-expect&quot;&gt;What To Expect&lt;/h1&gt;
+
+&lt;p&gt;給不認識我的人，我從 2012 年開始做為一個軟體工程師而工作，主要專長是 iOS，中間參與新創時期有劈腿參與前期的產品開發，累積了一些 user reserach 與快速打造 MVP 驗證想法的經驗。而這些年主要做的事是帶領一個團隊做 iOS app 的架構規畫、效能改善與監控、建立文件及團隊工作流程和處理各種開發時的疑難雜症。&lt;/p&gt;
+
+&lt;p&gt;因我主要還是一個 iOS 工程師，能和你分享的是以我個人經驗、知識與用它們歸納出你提出問題的可能解法和建議。當然一般性的軟體開發討論（比如不考慮框架，語言特性下的架構）還是能聊聊，但若是非 iOS 領域的問題應該大部分是無法回答（比如 Java 的 bytecode 細節）。&lt;/p&gt;
+
+&lt;p&gt;基本上大家若願聽小弟之言，我必當全力以赴，但也沒能保證 100% 在當下解決你的問題，畢竟有的事需要天時、地利與人合 &lt;del&gt;或讓我跟你說說怎麼從入門到放棄&lt;/del&gt;。&lt;/p&gt;
+
+&lt;p&gt;其實主要還是認為這些年來的經驗也許有機會幫助其它個人、團隊，這只是我所跨出嘗試的第一步，更多內容可以在最新一期的 &lt;a href=&quot;https://weakself.dev/episodes/55&quot;&gt;weak self 第 55 集&lt;/a&gt;裡聽到（預計 2020/10/4 21:00 上線）。&lt;/p&gt;
+
+&lt;h1 id=&quot;如何預約&quot;&gt;如何預約&lt;/h1&gt;
+
+&lt;p&gt;只要你是參與 iPlayground 2020 的會眾即可預約，即日起開放&lt;a href=&quot;https://forms.gle/84QSXnmqZm8GipB46&quot;&gt;填表預約&lt;/a&gt;，預約單位可以是個人，數個人一起或者一個團隊。&lt;/p&gt;
+
+&lt;p&gt;請注意不是先搶先贏，我會挑選我認為適合當天活動的來進行，如果沒被選上的也請別介意，我會留存待日後有適合的機會再進行。&lt;/p&gt;
+
+&lt;h1 id=&quot;進行方式&quot;&gt;進行方式&lt;/h1&gt;
+
+&lt;p&gt;分兩個時段進行，在 iPlayground 2020 (11/8) 當天 10:30 - 12:00 和 15:30 - 17:00，每個時段各一個半小時、一組半小時，所以將會有六組在當天進行。過程中大家可以在表單註明接不接受旁聽，若接受的話會開放當天會眾自由參與旁聽，否則就只有我和預約的單位單獨在一個獨立的空間進行。&lt;/p&gt;</content><author><name>Pofat</name></author><category term="Swift" /><category term="iOS" /><category term="Software" /><summary type="html">Pofat 的軟工相談室</summary></entry><entry><title type="html">如何更精準地測試 Reactive Programming（一）</title><link href="http://localhost:4000/2020/09/17/Precise-Tests-In-Reactive-Programming-I.html" rel="alternate" type="text/html" title="如何更精準地測試 Reactive Programming（一）" /><published>2020-09-17T00:00:00+08:00</published><updated>2020-09-17T00:00:00+08:00</updated><id>http://localhost:4000/2020/09/17/Precise-Tests-In-Reactive-Programming-I</id><content type="html" xml:base="http://localhost:4000/2020/09/17/Precise-Tests-In-Reactive-Programming-I.html">&lt;p&gt;Functional Reactive Programming 顯然是這些年的開發模式顯學之一，尤其是 Apple 也推出了自己的方案 - &lt;a href=&quot;https://developer.apple.com/documentation/combine&quot;&gt;Combine&lt;/a&gt;，由此可見其重要性。基本上 Reactive Programming 是將非同步的事件，加上時間這個維度，以變成一個面向資料串流的開發典範，而這個發射事件的主體，在不同的 FRP 框架各由不同角色擔當， ReactiveCocoa 是 Signal，RxSwift 是 Observable，Combine 就是 Publisher，今天的主角會是 RxSwift，不過 Combine 與它的概念幾乎都是相通的，物件間的對應關係也幾乎是 1:1， 所以同樣的概念也完全適用。&lt;/p&gt;
 
 &lt;p&gt;Observable 的觀念一看 Rx 家族用來說明 Observable 的示意圖就能更容易地明白（&lt;a href=&quot;http://reactivex.io/documentation/observable.html&quot;&gt;圖片來源&lt;/a&gt;）
 &lt;img src=&quot;https://i.imgur.com/LJDykO8.png&quot; alt=&quot;observable&quot; /&gt;&lt;/p&gt;

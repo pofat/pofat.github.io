@@ -1,0 +1,318 @@
+<!-- 博文的布局-Layout -->
+<!DOCTYPE html>
+<html>
+<head>
+<!-- 引入head标签 -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-sclable=0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="description" content="#0x8badf00d 🤮" />
+<meta name="keywords" content="iOS, Swift" />
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/media.css">
+<link rel="stylesheet" href="/assets/css/animate.min.css">
+<link rel="stylesheet" href="/assets/css/pygments/pygments_pastie.css">
+<link rel="stylesheet" href="/assets/css/github-markdown.css">
+<!-- SNS-icon -->
+<script src="//at.alicdn.com/t/font_856428_y9z6nq7zf5.js"></script>
+<!-- share.css -->
+<link rel="stylesheet" href="/assets/css/share.min.css">
+<!-- font -->
+<link rel="stylesheet" href="/assets/css/font.css">
+<!-- <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Pacifico|Ubuntu|Roboto+Mono|Source+Sans+Pro" rel="stylesheet"> -->
+
+<!-- Favicon -->
+<link href="/assets/profile.jpeg" rel="shortcut icon" />
+<link href="/assets/profile.jpeg" rel="apple-touch-icon-precomposed" />
+<!-- Android Lolipop Theme Color -->
+<!-- <meta name="theme-color" content="#1464FB"> -->
+<title>波肥的軟工相談室 @ iPlayground</title>
+<!-- 百度统计 -->
+
+<!-- 谷歌分析 -->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141693863-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-141693863-1');
+</script>
+
+
+<!-- Android Lolipop Theme Color -->
+<meta name="theme-color" content=" rgb(0,185,242) ">
+</head>
+<body>
+
+<!-- 顶部锚点 -->
+<a id="htmlup" name="htmlup"></a>
+<!-- 引入博文顶部选项 -->
+
+<header id="post-header" style="background-color:rgb(0,185,242);">
+  <div class="top-center">
+      <div class="logo">
+          <a href="/" title="my awesome webtitle" style="color: white;">Pofat Develops</a>
+      </div>
+      <nav class="top-nav">
+          <ul>
+              
+                <li><a href="/" style="color: white;">Articles</a></li>
+              
+                <li><a href="/tags.html" style="color: white;">Tags</a></li>
+              
+                <li><a href="/timeline.html" style="color: white;">Timeline</a></li>
+              
+                <li><a href="/about.html" style="color: white;">About</a></li>
+              
+          </ul>
+      </nav>
+      <div id="top-boot">
+        <a href="javascript:;" id="boot1" style="display:block;" onclick="document.getElementById('boot-area').style.display='block';document.getElementById('boot1').style.display='none';document.getElementById('boot2').style.display='block';"><img src="/assets/boot_white.png" alt=""></a>
+        <a href="javascript:;" id="boot2" style="display: none;" onclick="document.getElementById('boot-area').style.display='none';document.getElementById('boot1').style.display='block';document.getElementById('boot2').style.display='none';"><img src="/assets/boot_white.png" alt=""></a>
+      </div>
+  </div>
+
+</header>
+
+
+<!-- 引入移动下拉选项 -->
+<div id="boot-area">
+    <ul>
+        
+          <a href="/"><li>Articles</li></a>
+        
+          <a href="/tags.html"><li>Tags</li></a>
+        
+          <a href="/timeline.html"><li>Timeline</li></a>
+        
+          <a href="/about.html"><li>About</li></a>
+        
+    </ul>
+</div>
+
+<!-- 引入博文顶部样式 -->
+<!-- 版本一 垃圾 -->
+<!-- <div class="wow fadeIn top" data-wow-duration="3.5s" >
+    <span class="wow fadeInUp" data-wow-delay="0.2s">波肥的軟工相談室 @ iPlayground</span>
+    <span class="wow fadeInUp" data-wow-delay="0.4s"></span>
+    <span class="wow fadeInUp" data-wow-delay="0.4s"></span>
+    <span class="wow fadeInUp" data-wow-delay="0.6s">作者&nbsp;&nbsp;|&nbsp;&nbsp;Pofat</span>
+</div> -->
+
+<!-- 版本二 可切换页面 -->
+
+<div class="post-top" style="background-color:rgb(0,185,242);">
+  <!-- 页面宽度大于800px -->
+  <div class="left-area">
+    
+      <a href="javascript:;" class="btn bounceInLeft animated" onmouseover="showLeft();this.style.color='rgb(0,185,242)';" onmouseout="goneLeft();this.style.color='rgba(0,0,0,.2)';"><</a>
+      <div id="left-tab" style="display:none;"><span class="left-san"></span><span class="left-main" style="color:rgb(0,185,242);"><sapn class="main">到頂了</sapn></span></div>
+    
+  </div>
+  <div class="post-titlearea">
+    <span class="wow fadeInUp" data-wow-delay="0.2s">波肥的軟工相談室 @ iPlayground</span>
+    <!-- <span class="wow fadeInUp" data-wow-delay="0.4s"></span> -->
+    <!-- <span class="wow fadeInUp" data-wow-delay="0.4s"></span> -->
+    <!-- <span class="wow fadeInUp" data-wow-delay="0.6s">作者&nbsp;&nbsp;|&nbsp;&nbsp;Pofat</span> -->
+  </div>
+  <div class="right-area">
+    
+      <a href="/2020/09/17/Precise-Tests-In-Reactive-Programming-I.html" class="btn bounceInRight self-animated" onmouseover="showRight();this.style.color='rgb(0,185,242)';" onmouseout="goneRight();this.style.color='rgba(0,0,0,.2)';">></a>
+      <div id="right-tab" style="display:none;"><span class="right-san"></span><span class="right-main" style="color:rgb(0,185,242);"><sapn class="main">如何更精準地測試 Reactive Programming（一）</sapn></span></div>
+    
+  </div>
+
+  <!-- 页面宽度小于800px -->
+  <div class="post-changearea">
+    
+      <a href="javascript:;" class="leftchange" style="border-right: 1px solid rgb(0,185,242);border-bottom: 2px solid rgb(0,185,242);"><span><br>到頂了</span></a>
+    
+    
+      <a href="/2020/09/17/Precise-Tests-In-Reactive-Programming-I.html" class="rightchange" style="border-left: 1px solid rgb(0,185,242);border-bottom: 2px solid rgb(0,185,242);"><span>下一篇<br><br>如何更精準地測試 Reactive Programming（一）</span></a>
+    
+  </div>
+</div>
+
+
+<div class="markdown-body fadeInUp animated">
+
+  
+
+  <!-- 文章内容 -->
+  <h1 id="pofat-的軟工相談室">Pofat 的軟工相談室</h1>
+
+<p>大家好，小弟是開發傷害累積很深的 iOS 清道夫工程師，念在一路走來接了不少炮彈、隕石，故在 iPlayground 2020 重磅推出個人相談室服務，望大家在未來的工程師之道上能少點傷害，走得舒服些，也有機會和大家交流蕉流。</p>
+
+<p>如果你在團隊、公司或個人開發中有以下幾類的困惑或疑問，歡迎填表單預約，讓 Pofat 我為你想想辧法！</p>
+
+<h2 id="a-程式架構與效能類問題">A. 程式架構與效能類問題</h2>
+
+<ul>
+  <li>是否感覺面對的專案都在疊床架屋，每日開發如履薄冰，想處理卻不知從何下手？</li>
+  <li>面對大規模的重構，不知怎麼開始，以及開始後如何盡量別把專案搞爆。</li>
+  <li>想要開始寫測試，但是怎麼看好像都測不動啊…</li>
+  <li>是否有難以解決的效能問題，或是如何確保效能在開發迭代中不逐漸失去控制？</li>
+  <li>基本上如果你對下圖有既視感，歡迎來取暖 QAQ
+<img src="https://i.imgur.com/ayVC4Mn.png" alt="legacy code" /></li>
+</ul>
+
+<p>p.s. 請為企業工作的大家屆時務必注意是否有不適當地揭露公司智慧財產權與營業祕密的情況。</p>
+
+<h2 id="b-開發技術與自我成長">B. 開發技術與自我成長</h2>
+
+<ul>
+  <li>是否為了成為資深 iOS 工程師而想累積傷害值（無誤），卻不知道該往哪些面向學習與研究？</li>
+  <li>開發上是否遇到了開發問題很久沒能解決？</li>
+  <li>面試時不清楚如何給面試官留下印象以及如何展現自己？</li>
+</ul>
+
+<h2 id="c-團隊合作與工作流程">C. 團隊合作與工作流程</h2>
+
+<ul>
+  <li>是否想引入 code review 卻又不清楚到底該 review 什麼？</li>
+  <li>把 code 送給 reviewer 前自己又該有什麼自覺？</li>
+  <li>如何改善或確保工作流程能夠確保或提昇團隊產出的正確性？</li>
+</ul>
+
+<h1 id="what-to-expect">What To Expect</h1>
+
+<p>給不認識我的人，我從 2012 年開始做為一個軟體工程師而工作，主要專長是 iOS，中間參與新創時期有劈腿參與前期的產品開發，累積了一些 user reserach 與快速打造 MVP 驗證想法的經驗。而這些年主要做的事是帶領一個團隊做 iOS app 的架構規畫、效能改善與監控、建立文件及團隊工作流程和處理各種開發時的疑難雜症。</p>
+
+<p>因我主要還是一個 iOS 工程師，能和你分享的是以我個人經驗、知識與用它們歸納出你提出問題的可能解法和建議。當然一般性的軟體開發討論（比如不考慮框架，語言特性下的架構）還是能聊聊，但若是非 iOS 領域的問題應該大部分是無法回答（比如 Java 的 bytecode 細節）。</p>
+
+<p>基本上大家若願聽小弟之言，我必當全力以赴，但也沒能保證 100% 在當下解決你的問題，畢竟有的事需要天時、地利與人合 <del>或讓我跟你說說怎麼從入門到放棄</del>。</p>
+
+<p>其實主要還是認為這些年來的經驗也許有機會幫助其它個人、團隊，這只是我所跨出嘗試的第一步，更多內容可以在最新一期的 <a href="https://weakself.dev/episodes/55">weak self 第 55 集</a>裡聽到（預計 2020/10/4 21:00 上線）。</p>
+
+<h1 id="如何預約">如何預約</h1>
+
+<p>只要你是參與 iPlayground 2020 的會眾即可預約，即日起開放<a href="https://forms.gle/84QSXnmqZm8GipB46">填表預約</a>，預約單位可以是個人，數個人一起或者一個團隊。</p>
+
+<p>請注意不是先搶先贏，我會挑選我認為適合當天活動的來進行，如果沒被選上的也請別介意，我會留存待日後有適合的機會再進行。</p>
+
+<h1 id="進行方式">進行方式</h1>
+
+<p>分兩個時段進行，在 iPlayground 2020 (11/8) 當天 10:30 - 12:00 和 15:30 - 17:00，每個時段各一個半小時、一組半小時，所以將會有六組在當天進行。過程中大家可以在表單註明接不接受旁聽，若接受的話會開放當天會眾自由參與旁聽，否則就只有我和預約的單位單獨在一個獨立的空間進行。</p>
+
+  <!-- 引入share模块 -->
+  
+  <div class="social-share-wrapper">
+    <div class="social-share"></div>
+  </div>
+
+
+<!-- share.js -->
+<script src="/assets/js/social-share.min.js"></script>
+<script>
+  socialShare('.social-share', {
+    sites: [
+      
+        'twitter'
+        ,
+        
+      
+        'facebook'
+        ,
+        
+      
+        'linkedin'
+        
+      
+    ],
+    wechatQrcodeTitle: "分享到微信朋友圈",
+    wechatQrcodeHelper: '期待在朋友圈见到这篇文章'
+  });
+</script>
+
+</div>
+
+<!-- 底部锚点 -->
+<a id="htmldown" name="htmldown"></a>
+<!-- 引入评论模块 -->
+
+    <section class="post-footer-item comment">
+      <div id="disqus_thread"></div>
+    </section>
+
+    <script>
+      /**
+       *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+       *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+          s = d.createElement('script');
+        /*写入自己的disqus信息*/
+        s.src = 'https://pofat-dev.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+
+    </script>
+
+
+
+
+
+
+
+<!-- 引入goto模块 -->
+<div class="bounceInRight animated go">
+  <a title="到最上面切換不同文章" class="gototop" href="#htmlup" target="_self">
+    <div class="box" style="font-family:'Arial';">
+        Top
+    </div>
+  </a>
+  <a title="底部有disqus評論" class="gotobottom" href="#htmldown" target="_self">
+    <div class="box" style="font-family:'Arial';">
+        Foot
+    </div>
+  </a>
+</div>
+
+<!-- 引入页面底部模块 -->
+<footer id="bottom">
+  <br>
+  <span>Pofat Develops ©
+  
+  
+    2019
+    -
+  
+  2020
+  <br>
+  Powered by <a href="https://www.jekyll.com.cn/">Jekyll</a> | <a href="https://github.com/xukimseven/HardCandy-Jekyll">HardCandy-Jekyll</a></span>
+</footer>
+
+
+<!-- 引用wow.js的动画效果 -->
+<script src="/assets/js/wow.js"></script>
+<script>
+    var wow = new WOW({
+        boxClass: 'wow',
+        animateClass: 'animated',
+        // offset: 600,
+        mobile: true,
+        live: true
+    });
+    wow.init();
+</script>
+<!-- 页面刷新回到顶部 -->
+<script>
+    window.onbeforeunload = function(){
+        //刷新后页面自动回到顶部
+        document.documentElement.scrollTop = 0;  //ie下
+        document.body.scrollTop = 0;  //非ie
+    }
+</script>
+<script src="/assets/js/main.js"></script>
+</body>
+</html>
