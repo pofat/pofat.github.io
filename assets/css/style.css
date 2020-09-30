@@ -719,7 +719,7 @@ figure figcaption {
     font-size: 45px;
     font-weight: 550;
     color: white;
-    font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+    font-family: "Arial","Microsoft YaHei","PingFangTC",sans-serif;
     /*font-family: 'Kaushan Script', cursive;*/
 }
 .post-titlearea span:nth-child(2){
