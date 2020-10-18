@@ -297,7 +297,39 @@
 
 <h2 id="app-開發者該怎麼做">App 開發者該怎麼做？</h2>
 
+<p>拿 Swift Atomics 的官方例子和 NSLock 做 increment 的效率粗略比較一下(做 10 次取平均），可以看到差距</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Atomics: 2.7975
+NSLock: 4.8439
+</code></pre></div></div>
+
 <p>基本上這個 pakcage 可能絕大多數的 iOS 開發者是完全用不到的，至少要到 <a href="https://github.com/belozierov/SwiftCoroutine">SwiftCoroutine</a> 這樣程度的 API 才有可能被大家舒服地使用的，或許有興趣的人可以加入幫忙處理一些底層未實現的功能，或著試著用它搭建更高層可以給一般 app 開發者使用的套件。</p>
+
+<p>真的要用的話，試著舉個例子，假如我們有一個物件會被多個 thread 使用，我們想在不同 thread 對它做事，但這件事只能做一次（比如 clean up），可以這麼寫</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">import</span> <span class="kt">Atomics</span>
+<span class="kd">import</span> <span class="kt">Foundation</span>
+
+<span class="kd">class</span> <span class="kt">SomeObject</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="k">let</span> <span class="nv">done</span> <span class="o">=</span> <span class="kt">ManagedAtomic</span><span class="o">&lt;</span><span class="kt">Bool</span><span class="o">&gt;</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+
+    <span class="c1">// Can only clear once</span>
+    <span class="kd">func</span> <span class="nf">clear</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="o">!</span><span class="n">done</span><span class="o">.</span><span class="nf">load</span><span class="p">(</span><span class="nv">ordering</span><span class="p">:</span> <span class="o">.</span><span class="n">relaxed</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">let</span> <span class="nv">expected</span> <span class="o">=</span> <span class="kc">false</span>
+            <span class="k">if</span> <span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">)</span> <span class="o">==</span> <span class="n">done</span><span class="o">.</span><span class="nf">compareExchange</span><span class="p">(</span><span class="nv">expected</span><span class="p">:</span> <span class="n">expected</span><span class="p">,</span> <span class="nv">desired</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">ordering</span><span class="p">:</span> <span class="o">.</span><span class="n">relaxed</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nf">print</span><span class="p">(</span><span class="s">"got cleared only once"</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">let</span> <span class="nv">some</span> <span class="o">=</span> <span class="kt">SomeObject</span><span class="p">()</span>
+
+<span class="kt">DispatchQueue</span><span class="o">.</span><span class="nf">concurrentPerform</span><span class="p">(</span><span class="nv">iterations</span><span class="p">:</span> <span class="mi">100</span><span class="p">)</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span>
+    <span class="n">some</span><span class="o">.</span><span class="nf">clear</span><span class="p">()</span> <span class="c1">// 只會被 clear 一次</span>
+<span class="p">}</span></code></pre></figure>
+
 
   <!-- 引入share模块 -->
   

@@ -168,4 +168,38 @@ repeat {
 
 ## App 開發者該怎麼做？
 
+拿 Swift Atomics 的官方例子和 NSLock 做 increment 的效率粗略比較一下(做 10 次取平均），可以看到差距
+
+```
+Atomics: 2.7975
+NSLock: 4.8439
+```
+
 基本上這個 pakcage 可能絕大多數的 iOS 開發者是完全用不到的，至少要到 [SwiftCoroutine](https://github.com/belozierov/SwiftCoroutine) 這樣程度的 API 才有可能被大家舒服地使用的，或許有興趣的人可以加入幫忙處理一些底層未實現的功能，或著試著用它搭建更高層可以給一般 app 開發者使用的套件。
+
+真的要用的話，試著舉個例子，假如我們有一個物件會被多個 thread 使用，我們想在不同 thread 對它做事，但這件事只能做一次（比如 clean up），可以這麼寫
+
+{% highlight Swift %}
+import Atomics
+import Foundation
+
+class SomeObject {
+    private let done = ManagedAtomic<Bool>(false)
+
+    // Can only clear once
+    func clear() {
+        if !done.load(ordering: .relaxed) {
+            let expected = false
+            if (true, false) == done.compareExchange(expected: expected, desired: true, ordering: .relaxed) {
+                print("got cleared only once")
+            }
+        }
+    }
+}
+
+let some = SomeObject()
+
+DispatchQueue.concurrentPerform(iterations: 100) { _ in
+    some.clear() // 只會被 clear 一次
+}
+{% endhighlight %}
