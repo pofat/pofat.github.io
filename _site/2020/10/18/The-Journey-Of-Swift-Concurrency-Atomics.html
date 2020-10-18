@@ -1,0 +1,420 @@
+<!-- 博文的布局-Layout -->
+<!DOCTYPE html>
+<html>
+<head>
+<!-- 引入head标签 -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-sclable=0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="description" content="#0x8badf00d 🤮" />
+<meta name="keywords" content="iOS, Swift" />
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/media.css">
+<link rel="stylesheet" href="/assets/css/animate.min.css">
+<link rel="stylesheet" href="/assets/css/pygments/pygments_pastie.css">
+<link rel="stylesheet" href="/assets/css/github-markdown.css">
+<!-- SNS-icon -->
+<script src="//at.alicdn.com/t/font_856428_y9z6nq7zf5.js"></script>
+<!-- share.css -->
+<link rel="stylesheet" href="/assets/css/share.min.css">
+<!-- font -->
+<link rel="stylesheet" href="/assets/css/font.css">
+<!-- <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Pacifico|Ubuntu|Roboto+Mono|Source+Sans+Pro" rel="stylesheet"> -->
+
+<!-- Favicon -->
+<link href="/assets/profile.jpeg" rel="shortcut icon" />
+<link href="/assets/profile.jpeg" rel="apple-touch-icon-precomposed" />
+<!-- Android Lolipop Theme Color -->
+<!-- <meta name="theme-color" content="#1464FB"> -->
+<title>The Journey Of Swift Concurrency - Atomics</title>
+<!-- 百度统计 -->
+
+<!-- 谷歌分析 -->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141693863-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-141693863-1');
+</script>
+
+
+<!-- Android Lolipop Theme Color -->
+<meta name="theme-color" content=" rgb(253,117,36) ">
+</head>
+<body>
+
+<!-- 顶部锚点 -->
+<a id="htmlup" name="htmlup"></a>
+<!-- 引入博文顶部选项 -->
+
+<header id="post-header" style="background-color:rgb(253,117,36);">
+  <div class="top-center">
+      <div class="logo">
+          <a href="/" title="my awesome webtitle" style="color: white;">Pofat Develops</a>
+      </div>
+      <nav class="top-nav">
+          <ul>
+              
+                <li><a href="/" style="color: white;">Articles</a></li>
+              
+                <li><a href="/tags.html" style="color: white;">Tags</a></li>
+              
+                <li><a href="/timeline.html" style="color: white;">Timeline</a></li>
+              
+                <li><a href="/about.html" style="color: white;">About</a></li>
+              
+          </ul>
+      </nav>
+      <div id="top-boot">
+        <a href="javascript:;" id="boot1" style="display:block;" onclick="document.getElementById('boot-area').style.display='block';document.getElementById('boot1').style.display='none';document.getElementById('boot2').style.display='block';"><img src="/assets/boot_white.png" alt=""></a>
+        <a href="javascript:;" id="boot2" style="display: none;" onclick="document.getElementById('boot-area').style.display='none';document.getElementById('boot1').style.display='block';document.getElementById('boot2').style.display='none';"><img src="/assets/boot_white.png" alt=""></a>
+      </div>
+  </div>
+
+</header>
+
+
+<!-- 引入移动下拉选项 -->
+<div id="boot-area">
+    <ul>
+        
+          <a href="/"><li>Articles</li></a>
+        
+          <a href="/tags.html"><li>Tags</li></a>
+        
+          <a href="/timeline.html"><li>Timeline</li></a>
+        
+          <a href="/about.html"><li>About</li></a>
+        
+    </ul>
+</div>
+
+<!-- 引入博文顶部样式 -->
+<!-- 版本一 垃圾 -->
+<!-- <div class="wow fadeIn top" data-wow-duration="3.5s" >
+    <span class="wow fadeInUp" data-wow-delay="0.2s">The Journey Of Swift Concurrency - Atomics</span>
+    <span class="wow fadeInUp" data-wow-delay="0.4s"></span>
+    <span class="wow fadeInUp" data-wow-delay="0.4s"></span>
+    <span class="wow fadeInUp" data-wow-delay="0.6s">作者&nbsp;&nbsp;|&nbsp;&nbsp;Pofat</span>
+</div> -->
+
+<!-- 版本二 可切换页面 -->
+
+<div class="post-top" style="background-color:rgb(253,117,36);">
+  <!-- 页面宽度大于800px -->
+  <div class="left-area">
+    
+      <a href="javascript:;" class="btn bounceInLeft animated" onmouseover="showLeft();this.style.color='rgb(253,117,36)';" onmouseout="goneLeft();this.style.color='rgba(0,0,0,.2)';"><</a>
+      <div id="left-tab" style="display:none;"><span class="left-san"></span><span class="left-main" style="color:rgb(253,117,36);"><sapn class="main">到頂了</sapn></span></div>
+    
+  </div>
+  <div class="post-titlearea">
+    <span class="wow fadeInUp" data-wow-delay="0.2s">The Journey Of Swift Concurrency - Atomics</span>
+    <!-- <span class="wow fadeInUp" data-wow-delay="0.4s"></span> -->
+    <!-- <span class="wow fadeInUp" data-wow-delay="0.4s"></span> -->
+    <!-- <span class="wow fadeInUp" data-wow-delay="0.6s">作者&nbsp;&nbsp;|&nbsp;&nbsp;Pofat</span> -->
+  </div>
+  <div class="right-area">
+    
+      <a href="/2020/09/29/pofats-chat-room-iplayground.html" class="btn bounceInRight self-animated" onmouseover="showRight();this.style.color='rgb(253,117,36)';" onmouseout="goneRight();this.style.color='rgba(0,0,0,.2)';">></a>
+      <div id="right-tab" style="display:none;"><span class="right-san"></span><span class="right-main" style="color:rgb(253,117,36);"><sapn class="main">波肥的軟工相談室 @ iPlayground</sapn></span></div>
+    
+  </div>
+
+  <!-- 页面宽度小于800px -->
+  <div class="post-changearea">
+    
+      <a href="javascript:;" class="leftchange" style="border-right: 1px solid rgb(253,117,36);border-bottom: 2px solid rgb(253,117,36);"><span><br>到頂了</span></a>
+    
+    
+      <a href="/2020/09/29/pofats-chat-room-iplayground.html" class="rightchange" style="border-left: 1px solid rgb(253,117,36);border-bottom: 2px solid rgb(253,117,36);"><span>下一篇<br><br>波肥的軟工相談室 @ iPlayground</span></a>
+    
+  </div>
+</div>
+
+
+<div class="markdown-body fadeInUp animated">
+
+  
+
+  <!-- 文章内容 -->
+  <p>由於在 weak self <a href="https://weakself.dev/episodes/56">56集</a>聊到了這陣子 Apple 一周一 framework，蓬勃地產出<del>Bug</del>，我認為這個 <a href="https://github.com/apple/swift-atomics">Swift Atomics</a> 是整個 Swift Concurrency 大業的一個分支，之後會陸續就我的看法，將  Swift Concurrency 的起頭，以及目前已經實現的部分寫文探討。本來 Atomics 應該是整個系列的第三或第四集，但因為 Podcast 節目要出了，迫在眉睫、褲子著火，只好先聊 Atomics （疑又是第三集先出啊)，也放棄了 Integer 型別的系列 index，以增加<del>惡補的可能性</del>彈性。</p>
+
+<h2 id="為何要有-swift-atomics">為何要有 Swift Atomics?</h2>
+
+<p>相信 iOS 開發者都很熟悉，如果要在不同的 thread 間讀寫共享的變數，特別是 value type 如 <code class="highlighter-rouge">Array</code> 或 <code class="highlighter-rouge">Dictionary</code>，我們都會用個 GCD queue 限制讀寫都只在同一個 queue 上或者用 <code class="highlighter-rouge">NSLock</code> 之類的 lock 來保證讀寫順序與完整性。</p>
+
+<p>然而對 Swift 而言，希望能成為系統層級可使用的語言以及具有更高層次抽象的 Concurrency 做法（比如 Coroutines），需要更底層的界面讓開發者能夠直接宣告一個可以安全訪問的同步結構。</p>
+
+<p>簡而言之就是你能宣告一個型別，就可以直接在不同的 thread 間讀寫它而不會出事，你不需要再去考慮該用 GCD 或 lock 來保證它的安全性，畢竟這兩種方法都有它的缺點與限制：</p>
+
+<p>使用 GCD，當數據或對象增加時，容易變得複雜，你很難一下明白是「哪一個 queue」在保護「哪一個數據」； 有的情況使用 NSLock根本無用，比如在一個 mutating method 裡放 lock，mutating 本身實作概念是會先 copy 一份出去修改，再寫回原本的變數中。除以此外，lock 的做法可能還會有效能的疑慮。</p>
+
+<p>所以，Swift 應該搞個自己的東西讓我們直接用才對，基本上目標會是：</p>
+
+<ul>
+  <li>一個新的類型，會在語義上明顯地標示這是一個 atomic 操作，最要緊的就是 concurrent mutation，一個 Swift 以前沒有的概念。</li>
+  <li>操作時要明確地給予 memory order 參數，以明白讀寫共享的 memory 時順序是如何地保證。</li>
+</ul>
+
+<p>當然如同介紹與提案說的，這是個滿是坑的領域，跟 <code class="highlighter-rouge">Unsafe-</code> 家族一樣，希望少用更或者別用。這裡只是實現了真正的 concurrent mutation 的可能性（因為以前是不可能的），實質上 Atomics 物件可以視作 <code class="highlighter-rouge">UnsafePointer</code> 的 wrapper 而已，用起來就是怕。</p>
+
+<p>實際上做的事大概是兩部分：</p>
+
+<ol>
+  <li>與 C/C++ 相似的同步記憶體模型以及橋接 C/C++的記憶體順序</li>
+  <li>基於 C Atomic 實現核心功能與 class-based 的 Atomic 物件給 Swift 開發者使用</li>
+</ol>
+
+<h2 id="swift-atomics-為何是個-package">Swift Atomics 為何是個 Package</h2>
+
+<p>Atomics 的提案是 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0282-atomics.md">SE-0282</a>，然而這個提案是經過翻修的，原本從底層要做的橋接 C++/C 之記憶體模型到開發者可以建立的 Atomic 類型都有定義。這個目標原本是希望在，不過在考慮對於 API/ABI 穩定的影響，最後在 <a href="https://forums.swift.org/t/se-0282-low-level-atomic-operations/35382/59">Joe 的建議</a>下，這個提案修改為針對記憶體模型的改進和與此相關的底層 api，而最上層的 class-based 的 Atomics 物件則用 package 來推出。</p>
+
+<p>關於第一版的提案可見<a href="https://github.com/apple/swift-evolution/blob/3a358a07e878a58bec256639d2beb48461fc3177/proposals/0282-atomics.md">此</a>，推友<a href="https://twitter.com/kemchenj">四娘</a>有針對原始版寫了一篇<a href="https://kemchenj.github.io/2020-10-02/">譯文</a>，英文苦手可參考。</p>
+
+<h2 id="怎麼用">怎麼用</h2>
+
+<p>最常見的 thread-unsafe access 例子是</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">import</span> <span class="kt">Dispatch</span>
+
+<span class="kd">struct</span> <span class="kt">Counter</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">value</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">increment</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">value</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">DispatchQueue</span><span class="o">.</span><span class="nf">concurrentPerform</span><span class="p">(</span><span class="nv">iterations</span><span class="p">:</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="k">in</span> <span class="mi">0</span><span class="o">..&lt;</span><span class="mi">1000</span> <span class="p">{</span>
+        <span class="n">counter</span><span class="o">.</span><span class="nf">increment</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">counter</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="c1">// 會很奇怪不是 10_000</span></code></pre></figure>
+
+<p>如果用 Atomics 就會得到正確的結果</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">import</span> <span class="kt">Atomics</span>
+<span class="kd">import</span> <span class="kt">Dispatch</span>
+
+<span class="k">let</span> <span class="nv">counter</span> <span class="o">=</span> <span class="kt">ManagedAtomic</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="kt">DispatchQueue</span><span class="o">.</span><span class="nf">concurrentPerform</span><span class="p">(</span><span class="nv">iterations</span><span class="p">:</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span>
+  <span class="k">for</span> <span class="n">_</span> <span class="k">in</span> <span class="mi">0</span> <span class="o">..&lt;</span> <span class="mi">1000</span> <span class="p">{</span>
+    <span class="n">counter</span><span class="o">.</span><span class="nf">wrappingIncrement</span><span class="p">(</span><span class="nv">ordering</span><span class="p">:</span> <span class="o">.</span><span class="n">relaxed</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">counter</span><span class="o">.</span><span class="nf">load</span><span class="p">(</span><span class="nv">ordering</span><span class="p">:</span> <span class="o">.</span><span class="n">relaxed</span><span class="p">)</span> <span class="c1">// ⟹ 10_000</span></code></pre></figure>
+
+<h2 id="支援的型別">支援的型別</h2>
+
+<ul>
+  <li>各類整數們： <code class="highlighter-rouge">Int, Int64, Int32, Int16, Int8</code> 與 <code class="highlighter-rouge">UInt, UInt64, UInt32, UInt16, UInt8</code></li>
+  <li><code class="highlighter-rouge">Bool</code></li>
+  <li>標準的 Pointer 型別： <code class="highlighter-rouge">UnsafeRawPointer, UnsafeMutableRawPointer, UnsafePointer&lt;T&gt;, UnsafeMutablePointer&lt;T&gt;, Unmanaged&lt;T&gt;</code>，以及它們的 Optional 型態</li>
+  <li>任何 <code class="highlighter-rouge">RawValue</code> 是 atomic type 的 <code class="highlighter-rouge">RawRepresentable</code>，比如</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">enum</span> <span class="kt">AtomicEnum</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">AtomicValue</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="n">foo</span><span class="p">,</span> <span class="n">bar</span>
+<span class="p">}</span>
+
+<span class="k">let</span> <span class="nv">aEnum</span> <span class="o">=</span> <span class="kt">ManagedAtomic</span><span class="o">&lt;</span><span class="kt">AtomicEnum</span><span class="o">&gt;</span><span class="p">(</span><span class="o">.</span><span class="n">foo</span><span class="p">)</span></code></pre></figure>
+
+<ul>
+  <li>Reference type 要 confrom AtomicReference protocol 才行，如一個 LinkedList 裡最常用的 Node 結構</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="kt">Node</span><span class="p">:</span> <span class="kt">AtomicReference</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">next</span><span class="p">:</span> <span class="kt">ManagedAtomic</span><span class="o">&lt;</span><span class="kt">Node</span><span class="p">?</span><span class="o">&gt;</span>
+    <span class="k">var</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Element</span><span class="p">?</span>
+<span class="p">}</span></code></pre></figure>
+
+<h2 id="對現有的衝擊">對現有的衝擊</h2>
+
+<p>上面的 concurrent DispatchQueue 例子顯然違反了當前的 Swift memery exclusive access rules ，不能同時有 read/write 或 write/write access，所以這個規則被改寫了為 <code class="highlighter-rouge">除了 read 或 atomic access，不得有在同一個 variable 上有重複的 access</code>，然後 atomic access 就是我們可以使用的這些 api 如 <code class="highlighter-rouge">func load(ordering: AtomicLoadOrdering) -&gt; Value</code> 等</p>
+
+<p>至於記憶體管理，目前提供了兩種形態的 class，當然還是鼓勵大家用 ARC 的版本，除非你完全知道自己在幹嘛</p>
+
+<ul>
+  <li><code class="highlighter-rouge">ManagedAtomic&lt;T&gt;</code>： 仰賴 ARC 管理記憶體</li>
+  <li><code class="highlighter-rouge">UnsafeAtomic&lt;T&gt;</code>： 顧名思義，你要手動自己管理記憶體，可視為 UnsafePointer 再包一層</li>
+</ul>
+
+<p>這兩種物件都提供了六種可用的操作</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">load</span><span class="p">(</span><span class="nv">ordering</span><span class="p">:</span> <span class="kt">AtomicLoadOrdering</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Value</span>
+<span class="kd">func</span> <span class="nf">store</span><span class="p">(</span><span class="n">_</span> <span class="nv">desired</span><span class="p">:</span> <span class="kt">Value</span><span class="p">,</span> <span class="nv">ordering</span><span class="p">:</span> <span class="kt">AtomicStoreOrdering</span><span class="p">)</span>
+<span class="kd">func</span> <span class="nf">exchange</span><span class="p">(</span><span class="n">_</span> <span class="nv">desired</span><span class="p">:</span> <span class="kt">Value</span><span class="p">,</span> <span class="nv">ordering</span><span class="p">:</span> <span class="kt">AtomicUpdateOrdering</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Value</span>
+
+<span class="kd">func</span> <span class="nf">compareExchange</span><span class="p">(</span>
+    <span class="nv">expected</span><span class="p">:</span> <span class="kt">Value</span><span class="p">,</span>
+    <span class="nv">desired</span><span class="p">:</span> <span class="kt">Value</span><span class="p">,</span>
+    <span class="nv">ordering</span><span class="p">:</span> <span class="kt">AtomicUpdateOrdering</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nv">exchanged</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">original</span><span class="p">:</span> <span class="kt">Value</span><span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">compareExchange</span><span class="p">(</span>
+    <span class="nv">expected</span><span class="p">:</span> <span class="kt">Value</span><span class="p">,</span>
+    <span class="nv">desired</span><span class="p">:</span> <span class="kt">Value</span><span class="p">,</span>
+    <span class="nv">successOrdering</span><span class="p">:</span> <span class="kt">AtomicUpdateOrdering</span><span class="p">,</span>
+    <span class="nv">failureOrdering</span><span class="p">:</span> <span class="kt">AtomicLoadOrdering</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nv">exchanged</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">original</span><span class="p">:</span> <span class="kt">Value</span><span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">weakCompareExchange</span><span class="p">(</span>
+    <span class="nv">expected</span><span class="p">:</span> <span class="kt">Value</span><span class="p">,</span>
+    <span class="nv">desired</span><span class="p">:</span> <span class="kt">Value</span><span class="p">,</span>
+    <span class="nv">successOrdering</span><span class="p">:</span> <span class="kt">AtomicUpdateOrdering</span><span class="p">,</span>
+    <span class="nv">failureOrdering</span><span class="p">:</span> <span class="kt">AtomicLoadOrdering</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nv">exchanged</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">original</span><span class="p">:</span> <span class="kt">Value</span><span class="p">)</span></code></pre></figure>
+
+<p>基本上這個操作和 C/C++ 是相似的，且 memory ordering 更是完全 1:1 對應到 C/C++ <code class="highlighter-rouge">std::memory_order</code> 的定義。</p>
+
+<h2 id="lock-free-但不是-wait-free">Lock-Free 但不是 Wait-Free</h2>
+
+<p>Swift Atomics 保證用這物件可以完全不會被擋住 (non-blocking)，但不代表一定不用等，實際上的 atomic 操作會因對應的執行平台而異，如果是 compare and exchange loop 的話，你可能會因為不同的排程策略而需要等比較久才能完成操作，compare and exchange 的概念可能可以這樣大略表示</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">compareAndSwap</span><span class="p">(</span><span class="nv">old</span><span class="p">:</span> <span class="kt">Value</span><span class="p">,</span> <span class="nv">new</span><span class="p">:</span> <span class="kt">Value</span><span class="p">,</span> <span class="nv">current</span><span class="p">:</span> <span class="kt">Value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
+    <span class="k">guard</span> <span class="n">old</span> <span class="o">==</span> <span class="n">current</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">false</span>
+    <span class="p">}</span>
+    <span class="n">old</span> <span class="o">=</span> <span class="k">new</span> <span class="c1">// assgin new value to real address</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+
+<span class="c1">// The loop</span>
+<span class="k">repeat</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">oldValue</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="nf">load</span><span class="p">()</span> <span class="c1">// fetch old value</span>
+    <span class="k">let</span> <span class="nv">newValue</span> <span class="o">=</span> <span class="n">newValue</span> <span class="c1">// value we want to set</span>
+    <span class="k">let</span> <span class="nv">success</span> <span class="o">=</span> <span class="nf">compareAndSwap</span><span class="p">(</span><span class="nv">old</span><span class="p">:</span> <span class="n">oldValue</span><span class="p">,</span>
+                                 <span class="nv">new</span><span class="p">:</span> <span class="n">newValue</span><span class="p">,</span>
+                                 <span class="nv">current</span><span class="p">:</span> <span class="n">value</span><span class="o">.</span><span class="nf">load</span><span class="p">())</span> 
+<span class="p">}</span> <span class="k">while</span> <span class="o">!</span><span class="n">success</span></code></pre></figure>
+
+<h2 id="app-開發者該怎麼做">App 開發者該怎麼做？</h2>
+
+<p>基本上這個 pakcage 可能絕大多數的 iOS 開發者是完全用不到的，至少要到 <a href="https://github.com/belozierov/SwiftCoroutine">SwiftCoroutine</a> 這樣程度的 API 才有可能被大家舒服地使用的，或許有興趣的人可以加入幫忙處理一些底層未實現的功能，或著試著用它搭建更高層可以給一般 app 開發者使用的套件。</p>
+
+  <!-- 引入share模块 -->
+  
+  <div class="social-share-wrapper">
+    <div class="social-share"></div>
+  </div>
+
+
+<!-- share.js -->
+<script src="/assets/js/social-share.min.js"></script>
+<script>
+  socialShare('.social-share', {
+    sites: [
+      
+        'twitter'
+        ,
+        
+      
+        'facebook'
+        ,
+        
+      
+        'linkedin'
+        
+      
+    ],
+    wechatQrcodeTitle: "分享到微信朋友圈",
+    wechatQrcodeHelper: '期待在朋友圈见到这篇文章'
+  });
+</script>
+
+</div>
+
+<!-- 底部锚点 -->
+<a id="htmldown" name="htmldown"></a>
+<!-- 引入评论模块 -->
+
+    <section class="post-footer-item comment">
+      <div id="disqus_thread"></div>
+    </section>
+
+    <script>
+      /**
+       *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+       *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+          s = d.createElement('script');
+        /*写入自己的disqus信息*/
+        s.src = 'https://pofat-dev.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+
+    </script>
+
+
+
+
+
+
+
+<!-- 引入goto模块 -->
+<div class="bounceInRight animated go">
+  <a title="到最上面切換不同文章" class="gototop" href="#htmlup" target="_self">
+    <div class="box" style="font-family:'Arial';">
+        Top
+    </div>
+  </a>
+  <a title="底部有disqus評論" class="gotobottom" href="#htmldown" target="_self">
+    <div class="box" style="font-family:'Arial';">
+        Foot
+    </div>
+  </a>
+</div>
+
+<!-- 引入页面底部模块 -->
+<footer id="bottom">
+  <br>
+  <span>Pofat Develops ©
+  
+  
+    2019
+    -
+  
+  2020
+  <br>
+  Powered by <a href="https://www.jekyll.com.cn/">Jekyll</a> | <a href="https://github.com/xukimseven/HardCandy-Jekyll">HardCandy-Jekyll</a></span>
+</footer>
+
+
+<!-- 引用wow.js的动画效果 -->
+<script src="/assets/js/wow.js"></script>
+<script>
+    var wow = new WOW({
+        boxClass: 'wow',
+        animateClass: 'animated',
+        // offset: 600,
+        mobile: true,
+        live: true
+    });
+    wow.init();
+</script>
+<!-- 页面刷新回到顶部 -->
+<script>
+    window.onbeforeunload = function(){
+        //刷新后页面自动回到顶部
+        document.documentElement.scrollTop = 0;  //ie下
+        document.body.scrollTop = 0;  //非ie
+    }
+</script>
+<script src="/assets/js/main.js"></script>
+</body>
+</html>
