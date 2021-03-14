@@ -26,7 +26,7 @@ tags: Swift iOS Taipei
 
 ## 第三站： Apple 開發者們的老牌聚會 - CocoaHeads Taipei
 
-[CocoaHeads Taipei](https://www.facebook.com/groups/cocoaheads.taipei) 是每個月的第二個禮拜四晚上舉辦的例行聚會，大家都會在那分享技術、新知與職場五四三，本來身為真。邊緣 iOS 子的我，也是到了這裡後才開始接觸到其它開發圈友人並踏入社群，社群真的也是開發者留在圈子內繼續奮戰的一股力量吧，不管是任何年資的開發者們，總能在裡面獲得什麼，做為小旅行的終點站，和舊識閒聊，聽聽新知，認識其他新朋友，也許有這些機緣與活動，正是最近推特上說 iOS 開發者們看起來都好快樂的原因吧。
+[CocoaHeads Taipei](https://www.facebook.com/groups/cocoaheads.taipei) 是每個月的第二個禮拜四晚上舉辦的例行聚會，大家都會在那分享技術、新知與職場五四三，本來身為真。邊緣 iOS 子的我，也是到了這裡後才開始接觸到其它開發圈友人並踏入社群，社群真的也是開發者留在圈子內繼續奮戰的一股力量吧，不管是任何年資的開發者們，總能在裡面獲得什麼，做為小旅行的終點站，和舊識閒聊，聽聽新知，認識其他新朋友，很是滿足。最近推特上說 iOS 開發者們看起來都好快樂，也許原因正是有這些機緣與活動吧。
 
 Zonble 在 2021 年三月的聚會介紹 Dart 的新語法： Null safety 
 ![Zonble talks about Dart](/assets/cocoaheads_zonble_dart.jpg)
