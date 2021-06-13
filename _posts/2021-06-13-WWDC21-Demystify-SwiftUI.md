@@ -8,13 +8,13 @@ cover: '/assets/SwiftUI.png'
 tags: Swift SwiftUI
 ---
 
-WWDC 21 的 Keynote 看來格外平淡，但沒想到 session 公佈後卻意外地精彩絕倫，各種新東西、解密以及實務探討，但我一眼就看到應該是今年最不容錯過的 session - [Demystify SwiftUI](https://developer.apple.com/videos/play/wwdc2021/10022/)，姑且翻為 SwiftUI 解密，事後看完雖然沒有解多少密，但該注意的使用方式以避免效能或穩定性問題都有點出來。另外值得一提的是，今年首度舉辦 Digital Lounge ，報名後一群開發者會被拉入 Slack，第二三天都有一起看的活動，其中第三天一起看的就是 SwiftUI 解密，而且該 session 的講者也同時在 Slack 裡面即時回答大家的問題，事後也有留時間給大家額外提問、討論，在那裡又獲得不少寶藏啊！
+WWDC 21 的 Keynote 看來格外平淡，但沒想到 session 公佈後卻意外地精彩絕倫，各種新東西、解密以及實務探討，我一眼就看到今年最不容錯過的 session - [Demystify SwiftUI](https://developer.apple.com/videos/play/wwdc2021/10022/)，姑且翻為 SwiftUI 解密，事後看完雖然沒有解多少密，但該注意的使用方式以避免效能或穩定性問題都有點出來。而且今年首度舉辦 Digital Lounge ，報名後一群開發者會被拉入 Slack，第二三天都有一起看的活動，其中第三天一起看的就是 SwiftUI 解密，重點是該 session 的講者也同時在 Slack 裡面即時回答大家的問題，事後也有留時間給大家額外提問、討論，在那裡又獲得不少寶藏啊！
 
-相信此 session 絕不會在接下陸續發佈的 WWDC 精選解說文中缺席，這篇文就作為我個人的學習筆記，也包含了 lounge 裡的討論與提問。
+相信此 session 絕不會在接下陸續發佈的 WWDC 精選解說文中缺席，這篇文就作為我個人的學習筆記，其中包含了 lounge 裡的討論與提問，和各位分享。
 
 ## Identity
 
-常有人和我討論在 Swift 裡 value 與 reference type 選擇的準則是什麼，我的回答都是：「在一般情況下，用需要 identity 與否做為判斷要不要用 reference type 的依據。」 那在 SwiftUI 中，我們知道 View 都是 value type ，而 identity 則是給 SwiftUI 使用的。對於一個 render view 的 framework，需要知道它要不要更新「這個」 view ，所以身份識別是必要的。識別的方式分別為開發者主動給予識別資訊的 `Explicit identify` 與 SwiftUI 從程式碼結構中取得的 `Structural identify`
+當有人和我討論 Swift 裡 value 與 reference type 選擇的準則是什麼，我的回答都是：「在一般情況下，以需要 identity 與否做為要不要用 reference type 的依據」。在 SwiftUI 中，我們知道 View 都是 value type ，而 identity 則是給 SwiftUI 使用的。對於一個 render view 的 framework，需要知道它要不要更新「這個」 view ，所以身份識別是必要的。識別的方式分別為開發者主動給予識別資訊的 `Explicit identity` 與 SwiftUI 從程式碼結構中取得的 `Structural identity`
 
 補充：基本的元件如 Text Button 在 runtime 用 lldb 觀察可得知都是一個 `UIView` 的 subclass `SwiftUI.DisplayList.ViewUpdate.Platform.CGDrawingView`
 
@@ -136,13 +136,12 @@ if condition {
 {% highlight Swift %}
 
 class AppState: ObservableObject {
-    static let shared = AppState()
-
-    var manualPauseOfSpeaking: Bool = false
+    static let shared = AppState()
+    var manualPauseOfSpeaking: Bool = false
 }
 
 struct SceneTitleView: View {
-    @StateObject var appState = AppState.shared
-	...
+    @StateObject var appState = AppState.shared
+	// ...
 }
 {% endhighlight %}
