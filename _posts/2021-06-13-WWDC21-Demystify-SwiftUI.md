@@ -76,7 +76,7 @@ some View = _ConditionalContent<FooView, BarView>()
 3. 每當 identifier 開始出現，SwiftUI 會 allocate 一塊記憶體用來存放 state (即 `@State` 與 `@StateObject`)
 4. 上述的記憶體由對應的 identifier 來做 index 
 5. 在整個 lifetime 中，state 可能會被改變，state 的前一組值會保存下來用來比較是否有改變，不同的話才會重新 render
-6. 有點神奇旳是你的 `@State` 不用是 Equatable ，SwiftUI 也能理解值有沒有變化，估計是在 runtime 時利用 Metadata 去挖 properties 做比較
+6. 有點神奇的是你的 `@State` 不用是 Equatable ，SwiftUI 也能理解值有沒有變化，估計是在 runtime 時利用 Metadata 去挖 properties 做比較
 7. 既然 state 是要被保存的，所以會在 heap 裡
 
 Dependencies 是從 view 外部來決定需不需要重 render 的準則，一旦變化了，會先重建該 view 的 body ，然後再 recursivley traverse 其所有 childe view 。SwiftUI 會利用 identity 與其 lifetime 來建立一個 dependency 的 directed acyclic graph (但從 code level 看整個 view 是個 tree)，如此的做法可以避免過度的 render ，比如 view 的結構是 A -> B -> C，當唯 A C 共享的 dependency 改變時，僅 A C 會被 render ，而 B 不會。但其實當你若有把 property 從 A 傳到 B ，那也代表有 dependency ，所以常見情況應該都還是會全部都有 dependency 因而全都 re-render。
