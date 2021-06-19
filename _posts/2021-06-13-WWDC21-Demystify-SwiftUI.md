@@ -83,6 +83,28 @@ Dependencies 是從 view 外部來決定需不需要重 render 的準則，一�
 
 至於 dependency cycle 是不被允許發生的，一旦發生了會被 system trap，可以理解這個檢查是發生在 runtime 。
 
+### 來自 Apple 工程師的愛，新的 debug tool
+
+說這麼多，我們又不是 compiler 也不是 SwiftUI，我只是想知道到底什麼時候 view 被重畫，又為什麼會被重畫而已啊！你的心聲 Apple 工程師[聽到了](https://twitter.com/luka_bernardi/status/1402045202714435585?s=20)，現在只要加上 `Self._printChanges()` 在你的 content view 裡，就能夠看到 identity、dependency 與 state 是否有被設值以及是否有變化（以上任一變化都會發生 render），具體使用方式如下：
+
+{% highlight Swift %}
+var body: some View {
+    let _ = Self._printChanges()
+    // ... your views ...
+}
+{% endhighlight %}
+
+或者打個 breakpoint 在 body 裡並新增 action `po Self._printChanges()`
+
+![breakpoint_example](/assets/breakpoint_printChanges.png)
+如此一來當發生變化時你會在 console 中看到
+
+{% highlight shell %}
+ContentView: @self, @identity, _someState changed.
+{% endhighlight %}
+
+以上例子代表該 view 的 dependency （外部餵進 self 的參數）、identity 以及 state 都發生了變化，其實這裡就是第一次初始化後印出來的啦。
+
 ### 總結設計注意事項
 
 可以知道 identifier 這東西大大地決定了整個 view render 的時機，lifetime 與 state 的 lifetime ，誤用時可能造成災難，因此要注意兩種不同 identifier 的使用方式： 
