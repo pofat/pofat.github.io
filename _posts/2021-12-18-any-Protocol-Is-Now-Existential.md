@@ -31,10 +31,6 @@ func test(c: Copyable) {
 }
 {% endhighlight %}
 
-用一張圖([出處](https://twitter.com/jckarter/status/1453397244334329856?s=20))來表示整個 evolution 就是：
-
-![Protocols are the same](￼￼https://i.imgur.com/xYSMQcC.jpg)
-
 Protocol 的束縛至此完全被解放，不過使用上混淆的狀況仍未解決， 比如從目前使用語法上的角度來看， `func foo(s: Sequence)` 與 `func foo<S: Sequence>(s: S)` 幾乎感覺不出差異， 其實 existential type 和 generic parameter 本意上是大不相同：前者的本意是做為值層面的抽象 (value-level abastraction），你可以只關注它的值而不用理解型別之間的關係， 型別資訊等於被抺除了；而後者則是類型的抽象。 
 
 ## 語法影響想法
@@ -80,3 +76,6 @@ extension Array {
 {% endhighlight %}
 
 至此， Swift protocol 的最後一哩路也算是終於打通了吧！
+用一張圖([出處](https://twitter.com/jckarter/status/1453397244334329856?s=20))來表示整個 evolution 就是：
+
+![Protocols are the same](https://i.imgur.com/xYSMQcC.jpg)
