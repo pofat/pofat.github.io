@@ -31,7 +31,7 @@ func test(c: Copyable) {
 }
 {% endhighlight %}
 
-用一張圖來表示整個 evolution 就是 （[出處](https://twitter.com/jckarter/status/1453397244334329856?s=20)）
+用一張圖([出處](https://twitter.com/jckarter/status/1453397244334329856?s=20))來表示整個 evolution 就是：
 
 ![Protocols are the same](￼￼https://i.imgur.com/xYSMQcC.jpg)
 
