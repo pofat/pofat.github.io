@@ -1,5 +1,5 @@
 # Site settings
-title: 'Pofat\'s Zoo'
+title: "Pofat's Zoo"
 description: 'Funny, techie and Swifty'
 keywords: 'iOS, Swift'
 url: 'https://pofat.github.io'
@@ -18,10 +18,10 @@ plugins:
 author: true
 name: 'Pofat Tseng'
 NickName: 'Pofat'
-webtitle: 'Pofat\'s Zoo'
+webtitle: "Pofat's Zoo"
 bio: '我是一個開發者，喜歡開發 iOS 、產品與耐力運動能力，對於 Swift 有愛'
 about: true
-aboutyou: '欲認識肥宅可由下方進入'
+aboutyou: '欲認識肥宅可由下列選項進入'
 portraits: '/assets/profile.jpeg' # your portraits image file path
 
 # SNS
