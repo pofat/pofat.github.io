@@ -1,6 +1,6 @@
 # Site settings
-title: 'Pofat Develops'
-description: '#0x8badf00d 🤮'
+title: 'Pofat\'s Zoo'
+description: 'Funny, techie and Swifty'
 keywords: 'iOS, Swift'
 url: 'https://pofat.github.io'
 
@@ -10,11 +10,15 @@ nav:
   Timeline: '/timeline.html'
   About: '/about.html'
 
+# Plugin
+plugins:
+  - jekyll-feed
+
 # Me
 author: true
 name: 'Pofat Tseng'
-NickName: '波子'
-webtitle: 'Pofat Develops'
+NickName: 'Pofat'
+webtitle: 'Pofat\'s Zoo'
 bio: '我是一個開發者，喜歡開發 iOS 、產品與耐力運動能力，對於 Swift 有愛'
 about: true
 aboutyou: '欲認識肥宅可由下方進入'
