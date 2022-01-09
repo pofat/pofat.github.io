@@ -9,6 +9,7 @@ nav:
   Tags: '/tags.html'
   Timeline: '/timeline.html'
   About: '/about.html'
+  RSS: '/feed.xml'
 
 # Plugin
 plugins:
